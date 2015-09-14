@@ -18,12 +18,16 @@ class CandidateController extends Controller
     {   
 
         if($request->has('page')){
+            
+            //so you can search like this http://localhost/ewa2015/public/candidate?page=1&gender=F&party=1&blahblah=foobar
 
-            $candidateList=$apirepo->getCandidateList($request->get('page'));
+            $candidateList=$apirepo->getCandidateListBySearch($request);
 
         }
 
         else{
+
+            //if request have no parameter here u go with normal pagination list
 
             $candidateList=$apirepo->getCandidateList();
         
@@ -59,12 +63,16 @@ class CandidateController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(ApiRepository $apirepo,$id)
     {
-    
-        $candidate=\App\Candidate::with('reviews')->findOrFail($id);
+       
+        $candidate=$apirepo->getCandidateById($id);
 
-        return view('candidate.show',compact('candidate'));
+        dd($candidate);
+                
+        //$candidate=\App\Candidate::with('reviews')->findOrFail($id);
+
+        //return view('candidate.show',compact('candidate'));
     }
 
     /**

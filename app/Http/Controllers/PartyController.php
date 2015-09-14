@@ -17,7 +17,17 @@ class PartyController extends Controller
     public function index(Request $request,ApiRepository $apiRepository)
     {
 
-        $partyList=$apiRepository->getPartyList();
+        if($request->has('page'))
+        {   
+            //when request have page it goes with pagination parameter
+
+            $partyList=$apiRepository->getPartyList($request->get('page'));
+        }
+
+        else
+        {
+            $partyList=$apiRepository->getPartyList();
+        }
 
         dd($partyList);
 
@@ -51,9 +61,20 @@ class PartyController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(ApiRepository $apiRepository,$id)
     {
-        //
+        try {
+            
+            $party=$apiRepository->getPartyById($id);
+
+            dd($party);
+
+        } catch (Exception $e) {
+            
+            echo $e->message;
+        }
+        
+
     }
 
     /**

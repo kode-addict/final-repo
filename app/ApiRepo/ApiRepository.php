@@ -71,6 +71,7 @@ class ApiRepository
 
 	public function getCandidateById($id='55f54bc411b7f310c6883c8e')
 	{
+
 	    $response=$this
 	    			->client
 	    			->request(
@@ -104,12 +105,12 @@ class ApiRepository
      * @return party list data
      */
 
-	public function getPartyList()
+	public function getPartyList($page='1')
 	{
 	    $response=$this
 	    			->client
 	    			->request(
-	    					'GET', $this->partyEndpoint.'?token='.$this->getToken()
+	    					'GET', $this->partyEndpoint.'?page='.$page.'&token='.$this->getToken()
 	    				);
 
  		return $this->getJsonValue($response);
@@ -128,7 +129,7 @@ class ApiRepository
 	    $response=$this
 	    			->client
 	    			->request(
-	    					'GET', $this->partyEndpoint.'/detail/'.$id.'?token='.$this->getToken()
+	    					'GET', $this->partyEndpoint.'/'.$id.'?token='.$this->getToken()
 	    				);
  		return $this->getJsonValue($response);	
 
