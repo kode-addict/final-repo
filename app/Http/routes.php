@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+$router->get('test','CandidateController@index');
+
+Route::resource('candidate','CandidateController');
+
+Route::resource('party','PartyController');
+
+$router->get('candidate/search/{name}', 'CandidateController@candidateSearch');
+
+$router->get('candidatelist/search', 'CandidateController@candidateListSearch');

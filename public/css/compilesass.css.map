@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.scss"],"names":[],"mappings":"AAAG;EAEF,cAAc;EAEd,eAAc,EAJK","file":"compilesass.css","sourcesContent":["img.candidateSmall {\n\n\twidth : 200px;\n\n\theight: 200px;\n}"],"sourceRoot":"/source/"}
