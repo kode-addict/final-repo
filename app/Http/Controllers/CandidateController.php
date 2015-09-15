@@ -33,6 +33,8 @@ class CandidateController extends Controller
         
         }
 
+        dd($candidateList);
+
         return view('candidate.all',compact('candidateList'));
     }
 
@@ -110,7 +112,7 @@ class CandidateController extends Controller
     }
     public function candidateSearch(ApiRepository $apirepo,$name)
     {
-        $candidate=$apirepo->getCandidateBySearch($name);
+        $candidate=$apirepo->getCandidateByName($name);
 
         dd($candidate);   
     }

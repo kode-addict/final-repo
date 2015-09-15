@@ -13,6 +13,8 @@ class ApiRepository
 
 	protected $partyEndpoint;
 
+	protected $faqEndpoint;
+
 	public function __construct(Client $client)
 	{
 		$this->client=$client;
@@ -20,6 +22,8 @@ class ApiRepository
 		$this->candidateEndpoint='http://api.maepaysoh.org/candidate/';
 
 		$this->partyEndpoint='http://api.maepaysoh.org/party';
+
+		$this->faqEndpoint='http://api.maepaysoh.org/faq/';
 	}
     
     /**
@@ -88,7 +92,7 @@ class ApiRepository
      * @return candidate data
      */
 
-	public function getCandidateBySearch($name)
+	public function getCandidateByName($name)
 	{
 	    $response=$this
 	    			->client
@@ -135,6 +139,71 @@ class ApiRepository
 
 	}
 
+    /**
+     * Get the faq resource from api.
+     *
+     * @param  string  $page
+     * @return Faq data
+     */
+
+	public function getFaqList($page='1')
+	{
+	    try{
+
+		    $response=$this
+		    			->client
+		    			->request(
+		    					'GET', $this->faqEndpoint.'list?token='.$this->getToken().'&page='.$page
+		    				);
+		    			
+		    return $this->getJsonValue($response);	
+	   	}
+
+	   	catch(\GuzzleHttp\Exception\ConnectException $e){
+
+	   		echo 'hi';
+	   	}
+
+	    	
+	}
+    
+    /**
+     * Get the specified faq resource from api.
+     *
+     * @param  int  $id
+     * @return faq data
+     */
+
+	public function getFaqById($id)
+	{
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->faqEndpoint.$id.'?token='.$this->getToken()
+	    				);
+
+	    return $this->getJsonValue($response);		
+	}	
+
+    /**
+     * Search the Faq resource by keyword from api.
+     *
+     * @param  string  $name
+     * @return faq data
+     */	
+
+	public function getFaqByKeyword($name)
+	{
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->faqEndpoint.'search?q='.$name.'&token='.$this->getToken().'&_with=party'
+	    				);
+
+		return $this->getJsonValue($response);			
+	}
+
+
 
 	protected function transformToString($request)
 	{
@@ -147,6 +216,8 @@ class ApiRepository
 
 		return $string;
 	}	
+
+
 
 	protected function getJsonValue($response)
 	{

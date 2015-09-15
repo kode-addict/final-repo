@@ -22,6 +22,8 @@ Route::resource('candidate','CandidateController');
 
 Route::resource('party','PartyController');
 
+Route::resource('faq','FaqController');
+
 $router->get('candidate/search/{name}', 'CandidateController@candidateSearch');
 
 $router->get('candidatelist/search', 'CandidateController@candidateListSearch');
