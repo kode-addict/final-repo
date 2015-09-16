@@ -15,6 +15,12 @@ class ApiRepository
 
 	protected $faqEndpoint;
 
+	protected $geoEndPoint;
+
+	protected $upperHouseEndpoint;
+
+	protected $lowerHouseEndpoint;
+
 	public function __construct(Client $client)
 	{
 		$this->client=$client;
@@ -24,6 +30,12 @@ class ApiRepository
 		$this->partyEndpoint='http://api.maepaysoh.org/party';
 
 		$this->faqEndpoint='http://api.maepaysoh.org/faq/';
+
+		$this->geoEndPoint='http://api.maepaysoh.org/geo/district';
+
+		$this->upperHouseEndpoint='http://api.maepaysoh.org/geo/upperhouse';
+
+		$this->lowerHouseEndpoint='http://api.maepaysoh.org/geo/lowerhouse';
 	}
     
     /**
@@ -218,6 +230,122 @@ class ApiRepository
 	}	
 
 
+	public function getDistrictListBySearch($request)
+	{
+
+	    $parameters=$this->transformToString($request);
+
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->geoEndpoint.'?token='.$this->getToken().$parameters
+	    				);
+
+		return $this->getJsonValue($response);	
+	}
+
+
+	public function getDistrictById($id)
+	{
+
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->geoEndpoint.'/'.$id.'?token='.$this->getToken()
+	    				);
+
+ 		return $this->getJsonValue($response);			
+	}
+
+	public function getDistrictByLonAndLat($lat,$long)
+	{
+
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->geoEndpoint.'/find'.'?token='.$this->getToken().'&lon='.$lon.'&lat='.$lat
+	    				);
+
+ 		return $this->getJsonValue($response);			
+	}
+
+	public function getUpperHouseBySearch($request)
+	{
+
+	    $parameters=$this->transformToString($request);
+
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->upperHouseEndpoint.'?token='.$this->getToken().$parameters
+	    				);
+
+		return $this->getJsonValue($response);	
+	}
+
+
+	public function getUpperHouseById($id)
+	{
+
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->upperHouseEndpoint.'/'.$id.'?token='.$this->getToken()
+	    				);
+
+ 		return $this->getJsonValue($response);			
+	}
+
+	public function getUpperHouseByLonAndLat($lat,$long)
+	{
+
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->upperHouseEndpoint.'/find'.'?token='.$this->getToken().'&lon='.$lon.'&lat='.$lat
+	    				);
+
+ 		return $this->getJsonValue($response);			
+	}
+
+	public function getLowerHouseBySearch($request)
+	{
+
+	    $parameters=$this->transformToString($request);
+
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->lowerHouseEndpoint.'?token='.$this->getToken().$parameters
+	    				);
+
+		return $this->getJsonValue($response);	
+	}
+
+
+	public function getLowerHouseById($id)
+	{
+
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->lowerHouseEndpoint.'/'.$id.'?token='.$this->getToken()
+	    				);
+
+ 		return $this->getJsonValue($response);			
+	}
+
+	public function getLowerHouseByLonAndLat($lat,$long)
+	{
+
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->lowerHouseEndpoint.'/find'.'?token='.$this->getToken().'&lon='.$lon.'&lat='.$lat
+	    				);
+
+ 		return $this->getJsonValue($response);			
+	}
 
 	protected function getJsonValue($response)
 	{
