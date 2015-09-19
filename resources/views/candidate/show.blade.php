@@ -1,49 +1,41 @@
 @extends('master')
 
 @section('content')
+	
+	<br><br><br><br>
 
-<br>
+<div class="ui text container">
 
-<h2 class="ui header">{{ $candidate->name }}</h2>
+	<section class="about-candidate ui raised segment"> 
+			<img class="ui small bordered rounded image candidate-img" src="{{ $candidate->data->photo_url }}">
+			
+			<div class="ui right aligned grid">
+				<div class="ui right floated column">
+					<button class="ui button">Watch</button>
+					<button class="ui button">Review</button>									
+				</div>
+			</div><br><br>
 
-<img src="https://storage.googleapis.com/staticassets/candidate-photos/Scan_B_20150831_165.jpg" class="ui bordered image candidateSmall">
 
-<i class="thumbs outline up icon"></i>
+			<div class="ui text container">
+				<h3>{{ $candidate->data->name }}</h3>
+				<p><i class="teal student icon"></i> Education : {{$candidate->data->education }}</p>
+				<p><i class="teal suitcase icon"></i> Occupation : {{$candidate->data->occupation }}</p>
+				<p><i class="teal mars stroke icon"></i> Gender : {{ $candidate->data->gender == 'M' ? 'male' : 'female' }}</p>				
+				<p><i class="teal map pin icon"></i> Town : {{ $candidate->data->ward_village}}</p>				
+				<p><i class="teal male icon"></i> Father : {{ $candidate->data->father->name}}</p>				
+				<p><i class="teal female icon"></i> Mother : {{ $candidate->data->mother->name}}</p>				
+				<p><i class="teal tag icon"></i> Asa : {{ $candidate->data->legislature}}</p>				
 
-<i class="thumbs outline down icon"></i>
-<br>
-
-<div class="ui divider"></div>
-
-<ol>
-
-@foreach($candidate->reviews as $reivew)
-
-		<li>
-
-			{{ $reivew->content }}
-			<div class="">
-				
-				<i class="thumbs outline up icon"></i>
-
-				<i class="thumbs outline down icon"></i>
+				<br>
 			</div>
-		</li>
 
-		<br>
+			<div>
+				<i class="icon heart large up red"></i>
+				<i class="icon thumbs large up blue"></i>
 
-@endforeach()
+			</div>
 
-</ol>
-
-
-<div class="ui form">
-  
-  <div class="field">
-    <label>Review</label>
-    <textarea rows="2"></textarea>
-  </div>
-
+		</section> <!-- Candidate Detail END -->
 </div>
-
 @stop

@@ -36,24 +36,28 @@
         </style>
     </head>
     <body>
-
+        <header>
+            <div class="ui fixed menu">
+                <div class="ui container">
+                    <div class="header item">
+                        <!-- <img class="logo" src="assets/images/logo.png"> -->
+                        Mae Pay Soh
+                    </div>
+                    
+                    <div class="right menu">                    
+                        <a href="#" class="item">
+                            <i class="sidebar icon"></i> Menu                   
+                        </a>
+                    </div>
+                </div>
+            </div>          
+        </header> <!-- HEADER END -->
+        <br><br><br><br>
         <div class="ui container">
-
-<!-- <div class="ui column grid">
-  <div class="column">
-    <div class="ui raised segment">
-      <div class="ui red ribbon label">Overview</div>
-      <span>Account Details</span>
-      <p></p>
-      <a class="ui blue ribbon label">Community</a> User Reviews
-      <p></p>
-    </div>
-  </div>
-</div> -->
-
             <div class="content">
                 @yield('content')
             </div>
         </div>
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

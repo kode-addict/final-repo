@@ -7,7 +7,7 @@ use App\ApiRepo\ApiRepository;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class CandidateController extends Controller
+class GeoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,32 +15,15 @@ class CandidateController extends Controller
      * @return Response
      */
     public function index(Request $request,ApiRepository $apirepo)
-    {   
+    {
+        $DistrictList=$apirepo->getDistrictListBySearch($request);
 
-        if(!$request->all()==null){
-            
-            //so you can search like this http://localhost/ewa2015/public/candidate?page=1&gender=F&party=1&blahblah=foobar
+        if($request->ajax()){
 
-            $candidateList=$apirepo->getCandidateListBySearch($request);
-
+            return json_encode($DistrictList);
         }
 
-        else{
-
-            //if request have no parameter here u go with normal pagination list
-
-            $candidateList=$apirepo->getCandidateList();
-        
-        }
-
-        if ($request->ajax()) {
-
-            return json_encode($candidateList);
-            
-        }
-    
-
-        return view('candidate.all',compact('candidateList'));
+        echo json_encode($DistrictList);
     }
 
     /**
@@ -70,14 +53,9 @@ class CandidateController extends Controller
      * @param  int  $id
      * @return Response
      */
-    // test data http://localhost/ewa2015/public/candidate/55fa683a11b7f310c6884f03
-    
-    public function show(ApiRepository $apirepo,$id)
+    public function show($id)
     {
-       
-        $candidate=$apirepo->getCandidateById($id);
-
-        return view('candidate.show',compact('candidate'));
+        //
     }
 
     /**
@@ -113,17 +91,11 @@ class CandidateController extends Controller
     {
         //
     }
-    public function candidateSearch(ApiRepository $apirepo,$name)
-    {
-        $candidate=$apirepo->getCandidateByName($name);
 
-        dd($candidate);   
-    }
-
-    public function candidateListSearch(ApiRepository $apirepo,Request $request)
-    {
-        $candidateList=$apirepo->getCandidateListBySearch($request);
-
-        dd($candidateList);
+    public function lowerHouse(Request $request,ApiRepository $apirepo)
+    {   
+        $lowerHouse=$apirepo->getLowerHouseBySearch($request);
+        
+        return json_encode($lowerHouse);
     }
 }

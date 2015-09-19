@@ -15,7 +15,7 @@ class ApiRepository
 
 	protected $faqEndpoint;
 
-	protected $geoEndPoint;
+	protected $geoEndpoint;
 
 	protected $upperHouseEndpoint;
 
@@ -31,7 +31,7 @@ class ApiRepository
 
 		$this->faqEndpoint='http://api.maepaysoh.org/faq/';
 
-		$this->geoEndPoint='http://api.maepaysoh.org/geo/district';
+		$this->geoEndpoint='http://api.maepaysoh.org/geo/district';
 
 		$this->upperHouseEndpoint='http://api.maepaysoh.org/geo/upperhouse';
 

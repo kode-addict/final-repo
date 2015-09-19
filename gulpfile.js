@@ -16,11 +16,17 @@ elixir(function(mix) {
     mix.styles([
     			
     			'../semantic/dist/semantic.css',
+    			'style.css'
 
     		],'public/css/app.css');
 
-    mix.sass([
-    			'app.scss'
 
-    	],'public/css/compilesass.css');
+    mix.scripts([
+
+    			'jquery.js',
+    			'../semantic/dist/semantic.js',
+    			'custom.js'
+
+    		],'public/js/app.js');
+
 });

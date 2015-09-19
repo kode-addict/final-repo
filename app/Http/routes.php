@@ -11,18 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::resource('/','MainController');
 
 $router->get('test','CandidateController@index');
+
+Route::get('geo/lowerhouse','GeoController@lowerHouse');
 
 Route::resource('candidate','CandidateController');
 
 Route::resource('party','PartyController');
 
 Route::resource('faq','FaqController');
+
+Route::resource('geo','GeoController');
 
 $router->get('candidate/search/{name}', 'CandidateController@candidateSearch');
 

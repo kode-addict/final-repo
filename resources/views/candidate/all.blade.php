@@ -2,24 +2,51 @@
 
 @section('content')
 
+	<div class="ui one column grid">
 
-@foreach($candidateList->data as $candidate)
+		@foreach($candidateList->data as $candidate)
 
-<br>
+			
+			<div class="column">
 
-<h2 class="ui header">{{ $candidate->name }}</h2>
+			<br>
 
-<img src="{{ $candidate->photo_url }}" class="ui bordered image candidateSmall">
+			<h2 class="ui header">{{ $candidate->name }}</h2>
 
-<i class="thumbs outline up icon"></i>
+			<img src="{{ $candidate->photo_url }}" class="ui bordered image candidateSmall">
 
-<i class="thumbs outline down icon"></i>
-<br>
+			<i class="thumbs outline up icon"></i>
 
-<div class="ui divider"></div>
+			<i class="thumbs outline down icon"></i>
+
+			<br>
+
+			<div class="ui divider"></div>		
+
+			</div>
 
 
-@endforeach()
+		@endforeach()
 
+	</div>
+
+
+		<div class="column" id="template">
+
+			<br>
+
+			<h2 class="ui header"></h2>
+
+			<img class="ui bordered image candidateSmall">
+
+			<i class="thumbs outline up icon"></i>
+
+			<i class="thumbs outline down icon"></i>
+			
+			<br>
+
+			<div class="ui divider"></div>		
+
+		</div>
 
 @stop
