@@ -16,3 +16,8 @@
   left: 15px;
   height: 140px !important;
 }
+
+#indicator .hidden{
+
+	display: none;
+}

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     
-      public function users()
+     public function users()
     {
 
         return $this->belongsToMany(User::class);

@@ -25,7 +25,10 @@ elixir(function(mix) {
 
     			'jquery.js',
     			'../semantic/dist/semantic.js',
-    			'custom.js'
+                '../vue/vue.js',
+               '../vue/vueresource.js',
+    			'custom.js',
+                'candidate.js'
 
     		],'public/js/app.js');
 

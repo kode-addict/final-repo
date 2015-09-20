@@ -11,6 +11,8 @@
 |
 */
 
+Auth::loginUsingId(1);
+
 Route::resource('/','MainController');
 
 $router->get('test','CandidateController@index');
@@ -24,6 +26,10 @@ Route::resource('party','PartyController');
 Route::resource('faq','FaqController');
 
 Route::resource('geo','GeoController');
+
+Route::resource('favorite','FavoriteController');
+
+Route::get('user/favorites','UserController@getFavoriteList');
 
 $router->get('candidate/search/{name}', 'CandidateController@candidateSearch');
 

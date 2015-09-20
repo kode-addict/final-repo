@@ -6,7 +6,7 @@
 
 <div class="ui text container">
 
-	<section class="about-candidate ui raised segment"> 
+	<section class="about-candidate ui raised segment" id="candidate"> 
 			<img class="ui small bordered rounded image candidate-img" src="{{ $candidate->data->photo_url }}">
 			
 			<div class="ui right aligned grid">
@@ -16,7 +16,7 @@
 				</div>
 			</div><br><br>
 
-
+			<input v-show="false" v-model="candidateId" value="{{ $candidate->data->id}}">
 			<div class="ui text container">
 				<h3>{{ $candidate->data->name }}</h3>
 				<p><i class="teal student icon"></i> Education : {{$candidate->data->education }}</p>
@@ -31,7 +31,7 @@
 			</div>
 
 			<div>
-				<i class="icon heart large up red"></i>
+				<a v-on="click : like($event,candidateId)"><i class="icon heart large up grey"></i></a>
 				<i class="icon thumbs large up blue"></i>
 
 			</div>

@@ -23,25 +23,38 @@ $('#step3').hide();
 
 		$('#step1header').addClass('grey');
 
+		$('#step1header i').removeClass('hidden');
+
 		$('#step2header').removeClass('grey');
 
 		var statename=$('#step1 select').val();
 
 		var select=$('#step2 select');
 
-		$.get('geo?st_name='+statename+'&no_geo=true',function(datas){
+		$.ajax({
+	    	
+	    	type:"GET",
 
-			select.empty();
+	    	url:'geo?st_name='+statename+'&no_geo=true',
 
-			$.each(datas.data,function(key,value){		
+	    	dataType:'json',
+	    	
+	    	beforeSend:function(data){ 
+	    		$('#step2 .dimmer').addClass('active');
+	    	},
+	    	success:function(datas){
 				
-				return buildOption(value.properties.DT,value.properties.DT_PCODE,select);	
+				select.children("option:not(:first-child)").remove();
+				
+				$.each(datas.data,function(key,value){		
+					
+					return buildOption(value.properties.DT,value.properties.DT_PCODE,select);	
 
-			});	
-	
-
-		},"json");
-
+				});	 
+				   		
+	        	$('#step2 .dimmer').removeClass('active');
+	    	}
+		});		
 
 	});
 
@@ -58,6 +71,8 @@ $('#step3').hide();
 
 		  });
 
+		$('#step2header i').removeClass('hidden');
+
 		$('#step2header').addClass('grey');
 
 		$('#step3header').removeClass('grey');
@@ -66,19 +81,32 @@ $('#step3').hide();
 
 		var select=$('#step3 select');
 
-		$.get('geo/lowerhouse?dt_pcode='+districtcode+'&no_geo=true',function(datas){
 
-			select.empty();
-			
-			$.each(datas.data,function(key,value){		
+
+		$.ajax({
+	    	
+	    	type:"GET",
+
+	    	url:'geo/lowerhouse?dt_pcode='+districtcode+'&no_geo=true',
+
+	    	dataType:'json',
+	    	
+	    	beforeSend:function(data){ 
+	    		$('#step3 .dimmer').addClass('active');
+	    	},
+	    	success:function(datas){
 				
-				return buildOption(value.properties.TS,value.properties.TS_PCODE,select);	
+				select.children("option:not(:first-child)").remove();
+				
+				$.each(datas.data,function(key,value){		
+					
+					return buildOption(value.properties.TS,value.properties.TS_PCODE,select);	
 
-			});	
-	
-
-		},"json");
-
+				});	 
+				   		
+	        	$('#step3 .dimmer').removeClass('active');
+	    	}
+		});
 
 	});
 
@@ -92,6 +120,8 @@ $('#step3').hide();
 		    		$('#step1').transition('fade');
 		    	
 		  });
+
+		$('#step1header i').addClass('hidden');  
 
 		$('#step2header').addClass('grey');
 
@@ -113,6 +143,8 @@ $('#step3').hide();
 		    	
 		  });
 
+		$('#step2header i').addClass('hidden');
+
 		$('#step3header').addClass('grey');
 
 		$('#step2header').removeClass('grey');
@@ -120,6 +152,16 @@ $('#step3').hide();
 
 	});
 
+	$('#step3 .done').click(function(e) {
+
+		e.preventDefault();
+
+		$('#step3header i').removeClass('hidden');
+
+		$('#step3 form').submit();
+
+
+	});
 
 	function buildOption(name,code,select){
 			
