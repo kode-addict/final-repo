@@ -35085,4 +35085,16 @@ html.ios body {
   display: none;
 }
 
+.main {
+  margin-top: 100px;
+}
+
+.gray-color {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.push-down {
+  margin-bottom: 2.5em;
+}
+
 /*# sourceMappingURL=app.css.map */
