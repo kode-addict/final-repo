@@ -8,7 +8,6 @@
 
 	<section class="about-candidate ui raised segment" id="candidate"> 
 			<img class="ui small bordered rounded image candidate-img" src="{{ $candidate->data->photo_url }}">
-			
 			<div class="ui right aligned grid">
 				<div class="ui right floated column">
 					<button class="ui button">Watch</button>
@@ -16,8 +15,11 @@
 				</div>
 			</div><br><br>
 
-			<input v-show="false" v-model="candidateId" value="{{ $candidate->data->id}}">
-			<div class="ui text container">
+			<input v-show="false" v-model="likes" value="{{ $likes }}">
+
+ 			<input v-show="false" v-model="candidateId" value="{{ $candidate->data->id}}">
+
+ 			<div class="ui text container">
 				<h3>{{ $candidate->data->name }}</h3>
 				<p><i class="teal student icon"></i> Education : {{$candidate->data->education }}</p>
 				<p><i class="teal suitcase icon"></i> Occupation : {{$candidate->data->occupation }}</p>
@@ -29,10 +31,11 @@
 
 				<br>
 			</div>
-
 			<div>
+
 				<a v-on="click : favorite($event,candidateId)"><i class="icon heart large up grey"></i></a>
-				<a v-on="click : like($event,candidateId)"><i class="icon thumbs large up blue"></i></a>
+
+				<span>@{{ likes }}</span><a v-on="click : like($event,candidateId)"> <i class="icon thumbs large up" v-class="blue:liked"></i></a>
 
 			</div>
 

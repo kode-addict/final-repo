@@ -1,3 +1,9 @@
+$(document).ready(function(){
+
+
+
+
+
 $(function() {
     $.ajaxSetup({
         headers: {
@@ -214,6 +220,25 @@ $('.container .content .ui.grid')
   		return root.appendTo(that);
 
   	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
 
 
 

@@ -37,12 +37,17 @@ class FavoriteController extends Controller
      */
     public function store(Request $request)
     {
+    
         \App\FavoriteCandidate::create([
                 'user_id'   => auth()->user()->id,
                 'candidate_id'  => $request->input('candidate_id')
             ]);
     }
 
+    protected function checklikeExist(){
+
+        
+    }
     /**
      * Display the specified resource.
      *

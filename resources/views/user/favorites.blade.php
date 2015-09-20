@@ -15,7 +15,7 @@ new Vue ({
 
 	data : {
 
-		candidateId :"{{ $favorites[0] }}",
+		candidateId :"{{ json_decode($favorites) }}",
 
 	},
 

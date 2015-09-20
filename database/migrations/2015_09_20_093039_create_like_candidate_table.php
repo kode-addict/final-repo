@@ -14,6 +14,8 @@ class CreateLikeCandidateTable extends Migration
     {
         Schema::create('like_candidate', function (Blueprint $table) {
 
+            $table->increments('id');
+
             $table->integer('user_id')->unsigned();
 
             $table->string('candidate_id');

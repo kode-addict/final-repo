@@ -77,7 +77,9 @@ class CandidateController extends Controller
        
         $candidate=$apirepo->getCandidateById($id);
 
-        return view('candidate.show',compact('candidate'));
+        $likes=\App\LikeCandidate::where('candidate_id',$id)->count();
+
+        return view('candidate.show',compact('candidate','likes'));
     }
 
     /**

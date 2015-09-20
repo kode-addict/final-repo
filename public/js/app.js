@@ -41036,6 +41036,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ])
 });
 ;
+$(document).ready(function(){
+
+
+
+
+
 $(function() {
     $.ajaxSetup({
         headers: {
@@ -41261,6 +41267,25 @@ $('.container .content .ui.grid')
 
 
 
+
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
 new Vue ({
 
 	el : '#candidate',
@@ -41268,6 +41293,8 @@ new Vue ({
 	data : {
 
 		candidateId :'',
+
+		likes :0,
 
 	},
 
@@ -41277,15 +41304,21 @@ new Vue ({
 
 			e.preventDefault();
 
+			var that=this;
+
 		    this.$http.post('../favorite',{ candidate_id:id },function (data, status, request) {
 
-		          // set data on vm
-		          this.$set('someData', data)
+		        
 
-		    }).error(function (data, status, request) {
+		    }).success(function (data, status, request) {
 		          
-		          // handle error
-		    })
+		          if(data.result=='destroy'){
+
+		          	that.likes=that.likes-1;
+
+		          }
+
+		    });
 
 		},
 		like : function(e,id){
@@ -41294,15 +41327,29 @@ new Vue ({
 
 		    this.$http.post('../like',{ candidate_id:id },function (data, status, request) {
 
-		          // set data on vm
-		          this.$set('someData', data)
+		    	  var that=this;
+
+		          if(data.result=='destroyed'){
+
+		          	console.log('destroyed');
+
+		          	that.likes=that.likes-1;
+
+		          }
+		          if(data.result=='created'){
+
+		          	console.log('created');
+
+		          	that.likes=that.likes+1;
+
+		          }
 
 		    }).error(function (data, status, request) {
 		          
 		          // handle error
 		    })
 
-		}		
+		}				
 
 	},
 

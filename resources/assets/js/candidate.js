@@ -7,6 +7,8 @@ new Vue ({
 
 		candidateId :'',
 
+		likes :0,
+
 	},
 
 	methods: {
@@ -15,15 +17,27 @@ new Vue ({
 
 			e.preventDefault();
 
+			var that=this;
+
 		    this.$http.post('../favorite',{ candidate_id:id },function (data, status, request) {
 
-		          // set data on vm
-		          this.$set('someData', data)
+		        
 
-		    }).error(function (data, status, request) {
+		    }).success(function (data, status, request) {
 		          
-		          // handle error
-		    })
+		          if(data.result=='destroyed'){
+
+		          	that.likes=that.likes-1;
+
+		          }
+
+		          if(data.result=='created'){
+
+		          	that.likes=that.likes-1;
+
+		          }		          
+
+		    });
 
 		},
 		like : function(e,id){
@@ -32,15 +46,25 @@ new Vue ({
 
 		    this.$http.post('../like',{ candidate_id:id },function (data, status, request) {
 
-		          // set data on vm
-		          this.$set('someData', data)
+		    	  var that=this;
+
+		          if(data.result=='destroyed'){
+
+		          	that.likes=that.likes-1;
+
+		          }
+		          if(data.result=='created'){
+
+		          	that.likes=that.likes+1;
+
+		          }
 
 		    }).error(function (data, status, request) {
 		          
 		          // handle error
 		    })
 
-		}		
+		}				
 
 	},
 

@@ -37,11 +37,37 @@ class LikeController extends Controller
      */
     public function store(Request $request)
     {
+
+        if($this->checkLikeExist()==1){
+
+            $like=\App\LikeCandidate::where('user_id',auth()->user()->id)->first();
+
+            $like->delete();
+
+            return response()->json(['result' => 'destroyed']);
+
+        }
+        else{
+
         \App\LikeCandidate::create([
+
                 'user_id'   => auth()->user()->id,
                 'candidate_id'  => $request->input('candidate_id')
             ]);
+
+             return response()->json(['result' => 'created']);
+
+        }
     }
+
+
+    protected function checkLikeExist(){
+
+        $result=\App\LikeCandidate::where('user_id',auth()->user()->id)->count();
+
+        return $result;
+    }
+
 
     /**
      * Display the specified resource.

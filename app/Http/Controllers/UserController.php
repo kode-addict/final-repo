@@ -87,7 +87,7 @@ class UserController extends Controller
 
     public function getFavoriteList(){
     
-        $favorites=\App\FavoriteCandidate::lists('candidate_id');
+        $favorites=\App\FavoriteCandidate::all();
 
         $favorites=json_encode($favorites);
 

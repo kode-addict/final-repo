@@ -5,6 +5,7 @@
 
 
         <meta id="token" name="token" value="{{ csrf_token() }}">
+        
 
         <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
 
@@ -40,7 +41,8 @@
 
     </head>
     <body>
-     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
+
         <header>
             <div class="ui fixed menu">
                 <div class="ui container">
@@ -65,4 +67,6 @@
         </div>
 
     </body>
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
 </html>
