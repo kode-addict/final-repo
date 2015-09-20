@@ -183,7 +183,7 @@ $('.container .content .ui.grid')
   	
   	.visibility({
 
-    	once: true,
+    	once: false,
     	// update size when new content loads
     	observeChanges: true,
     	// load content on bottom edge visible
@@ -191,19 +191,29 @@ $('.container .content .ui.grid')
 
     		var that=$(this);
 
-    	
+    		var next=$('#paginate').val();
 
-	      		$.get(window.location.href+'&page=2',function(datas){
+    		console.log(next);
+
+    		if(next!=null && next!=''){
+
+    			var nextlink=next.replace('/?','');
+
+	      		$.get(window.location.href+'&'+nextlink,function(datas){
+
 
 					$.each(datas.data,function(key,value){		
 						
 						return buildCandidateList(value.name,value.photo_url,that);	
 
-					});	
+					});
+
+					
+					$('#paginate').val(datas.meta.pagination.links.next);
+	      			
 
 	      		},"json"); 
-
-    	
+    		}    	
       		
     	}
   
@@ -213,7 +223,7 @@ $('.container .content .ui.grid')
 
   		var root=$('#template').clone();
 
-  		$(root).children('.header').text(name);
+  		$(root).removeClass('hidden').children('.header').text(name);
 
   		$(root).children('img').attr('src',image);
 

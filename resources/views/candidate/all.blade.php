@@ -31,7 +31,7 @@
 	</div>
 
 
-		<div class="column" id="template">
+		<div class="column hidden" id="template">
 
 			<br>
 
@@ -49,5 +49,11 @@
 
 		</div>
 
+
+		@if( $candidateList->meta->pagination->total_pages > 1)
+
+				<input class="hidden" id="paginate" value="{{ $candidateList->meta->pagination->links->next }}">
+
+		@endIf
 
 @stop

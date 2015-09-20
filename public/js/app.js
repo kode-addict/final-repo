@@ -41221,7 +41221,7 @@ $('.container .content .ui.grid')
   	
   	.visibility({
 
-    	once: true,
+    	once: false,
     	// update size when new content loads
     	observeChanges: true,
     	// load content on bottom edge visible
@@ -41229,19 +41229,29 @@ $('.container .content .ui.grid')
 
     		var that=$(this);
 
-    	
+    		var next=$('#paginate').val();
 
-	      		$.get(window.location.href+'&page=2',function(datas){
+    		console.log(next);
+
+    		if(next!=null && next!=''){
+
+    			var nextlink=next.replace('/?','');
+
+	      		$.get(window.location.href+'&'+nextlink,function(datas){
+
 
 					$.each(datas.data,function(key,value){		
 						
 						return buildCandidateList(value.name,value.photo_url,that);	
 
-					});	
+					});
+
+					
+					$('#paginate').val(datas.meta.pagination.links.next);
+	      			
 
 	      		},"json"); 
-
-    	
+    		}    	
       		
     	}
   
@@ -41251,7 +41261,7 @@ $('.container .content .ui.grid')
 
   		var root=$('#template').clone();
 
-  		$(root).children('.header').text(name);
+  		$(root).removeClass('hidden').children('.header').text(name);
 
   		$(root).children('img').attr('src',image);
 
@@ -41312,11 +41322,17 @@ new Vue ({
 
 		    }).success(function (data, status, request) {
 		          
-		          if(data.result=='destroy'){
+		          if(data.result=='destroyed'){
 
 		          	that.likes=that.likes-1;
 
 		          }
+
+		          if(data.result=='created'){
+
+		          	that.likes=that.likes-1;
+
+		          }		          
 
 		    });
 
@@ -41331,14 +41347,10 @@ new Vue ({
 
 		          if(data.result=='destroyed'){
 
-		          	console.log('destroyed');
-
 		          	that.likes=that.likes-1;
 
 		          }
 		          if(data.result=='created'){
-
-		          	console.log('created');
 
 		          	that.likes=that.likes+1;
 
