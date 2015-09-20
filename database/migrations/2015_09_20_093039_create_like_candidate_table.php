@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVoteCandidateTable extends Migration
+class CreateLikeCandidateTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,18 @@ class CreateVoteCandidateTable extends Migration
      */
     public function up()
     {
-        Schema::create('vote_candidate', function (Blueprint $table) {
+        Schema::create('like_candidate', function (Blueprint $table) {
 
             $table->integer('user_id')->unsigned();
 
-            $table->integer('candidate_id')->unsigned();
+            $table->string('candidate_id');
 
             $table->boolean('status');
 
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->foreign('candidate_id')->references('id')->on('candidates');
+            $table->timestamps();
+
         });
     }
 
@@ -33,6 +34,6 @@ class CreateVoteCandidateTable extends Migration
      */
     public function down()
     {
-        Schema::drop('vote_candidate');
+        Schema::drop('like_candidate');
     }
 }

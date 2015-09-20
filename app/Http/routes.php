@@ -11,7 +11,6 @@
 |
 */
 
-Auth::loginUsingId(1);
 
 Route::resource('/','MainController');
 
@@ -28,6 +27,8 @@ Route::resource('faq','FaqController');
 Route::resource('geo','GeoController');
 
 Route::resource('favorite','FavoriteController');
+
+Route::resource('like','LikeController');
 
 Route::get('user/favorites','UserController@getFavoriteList');
 

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class LikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,7 +37,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \App\LikeCandidate::create([
+                'user_id'   => auth()->user()->id,
+                'candidate_id'  => $request->input('candidate_id')
+            ]);
     }
 
     /**
@@ -83,14 +86,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getFavoriteList(){
-    
-        $favorites=\App\FavoriteCandidate::lists('candidate_id');
-
-        $favorites=json_encode($favorites);
-
-        return view('user.favorites',compact('favorites'));
     }
 }

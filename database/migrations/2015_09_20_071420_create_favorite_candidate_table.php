@@ -16,7 +16,9 @@ class CreateFavoriteCandidateTable extends Migration
 
             $table->integer('user_id')->unsigned();
 
-            $table->integer('candidate_id')->unsigned();
+            $table->string('candidate_id');
+
+            $table->boolean('status');
 
             $table->foreign('user_id')->references('id')->on('users');
 

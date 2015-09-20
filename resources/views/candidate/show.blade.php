@@ -31,8 +31,8 @@
 			</div>
 
 			<div>
-				<a v-on="click : like($event,candidateId)"><i class="icon heart large up grey"></i></a>
-				<i class="icon thumbs large up blue"></i>
+				<a v-on="click : favorite($event,candidateId)"><i class="icon heart large up grey"></i></a>
+				<a v-on="click : like($event,candidateId)"><i class="icon thumbs large up blue"></i></a>
 
 			</div>
 

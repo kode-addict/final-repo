@@ -41273,13 +41273,11 @@ new Vue ({
 
 	methods: {
 
-		like : function(e,id){
+		favorite : function(e,id){
 
 			e.preventDefault();
 
-			var candidate_id=id
-
-		    this.$http.post('../favorite', function (candidate_id, status, request) {
+		    this.$http.post('../favorite',{ candidate_id:id },function (data, status, request) {
 
 		          // set data on vm
 		          this.$set('someData', data)
@@ -41289,7 +41287,22 @@ new Vue ({
 		          // handle error
 		    })
 
-		}
+		},
+		like : function(e,id){
+
+			e.preventDefault();
+
+		    this.$http.post('../like',{ candidate_id:id },function (data, status, request) {
+
+		          // set data on vm
+		          this.$set('someData', data)
+
+		    }).error(function (data, status, request) {
+		          
+		          // handle error
+		    })
+
+		}		
 
 	},
 

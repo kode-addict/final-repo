@@ -37,8 +37,10 @@
                 font-size: 24px;
             }
         </style>
+
     </head>
     <body>
+     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <header>
             <div class="ui fixed menu">
                 <div class="ui container">
@@ -61,6 +63,6 @@
                 @yield('content')
             </div>
         </div>
-        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
     </body>
 </html>

@@ -11,7 +11,7 @@
 
 			<br>
 
-			<h2 class="ui header">{{ $candidate->name }}</h2>
+			<h2 class="ui header"><a href="{{ route('candidate.show',$candidate->id) }}">{{ $candidate->name }} </a></h2>
 
 			<img src="{{ $candidate->photo_url }}" class="ui bordered image candidateSmall">
 
