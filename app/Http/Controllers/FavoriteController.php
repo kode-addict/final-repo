@@ -37,16 +37,35 @@ class FavoriteController extends Controller
      */
     public function store(Request $request)
     {
-    
+        $candidateId=$request->input('candidate_id');
+
+        if($this->checkFavoriteExist($candidateId)==1){
+
+            $like=\App\FavoriteCandidate::where('user_id',auth()->user()->id)->where('candidate_id',$candidateId)->first();
+
+            $like->delete();
+
+            return response()->json(['result' => 'destroyed']);
+
+        }
+        else{
+
         \App\FavoriteCandidate::create([
+
                 'user_id'   => auth()->user()->id,
-                'candidate_id'  => $request->input('candidate_id')
+                'candidate_id'  => $candidateId
             ]);
+
+             return response()->json(['result' => 'created']);
+
+        }
     }
 
-    protected function checklikeExist(){
+    protected function checkFavoriteExist($candidateId){
 
-        
+        $result=\App\FavoriteCandidate::where('user_id',auth()->user()->id)->where('candidate_id',$candidateId)->count();
+
+        return $result;
     }
     /**
      * Display the specified resource.

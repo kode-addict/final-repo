@@ -35085,4 +35085,7 @@ html.ios body {
   display: none;
 }
 
+.likebtn,.favoritebtn{
+  color: gray;
+}
 /*# sourceMappingURL=app.css.map */

@@ -38,9 +38,10 @@
                 font-size: 24px;
             }
         </style>
-
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     </head>
     <body>
+
 
 
         <header>
@@ -65,8 +66,7 @@
                 @yield('content')
             </div>
         </div>
-
+        
     </body>
-        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
 </html>

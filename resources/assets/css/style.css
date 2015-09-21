@@ -30,3 +30,7 @@
 .hidden{
   display: none;
 }
+
+.likebtn,.favoritebtn{
+  color: gray;
+}

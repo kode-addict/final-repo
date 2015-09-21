@@ -3,11 +3,15 @@
 @section('content')
 
 <div id="favorite">
-	{{ $favorites[0] }}
+
+	
 </div>
+
+
 
 <script >
 
+(function() {
 
 new Vue ({
 
@@ -15,29 +19,33 @@ new Vue ({
 
 	data : {
 
-		candidateId :"{{ json_decode($favorites) }}",
+		favoritelist :{!! $favorites !!},
 
 	},
 
 	ready: function() {
 
-
-		console.log(this.candidateId);
-
 		var that=this;
-		
-		this.$http.get('../candidate/'+id,function (data, status, request) {
 
-		    // set data on vm
-		    this.$set('someData', data)
+        this.favoritelist.forEach(function(value){
+           
 
-		})
+			that.$http.get('../candidate/'+value.candidate_id,function (data, status, request) {
+
+			    console.log(data);
+
+			});
+
+        });
+
+
 	}
 
 
 });
 
 
+})();
 
 </script>
 

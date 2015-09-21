@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="ui one column grid">
+	<div class="ui one column grid" id="infiniteCandidate">
 
 		@foreach($candidateList->data as $candidate)
 

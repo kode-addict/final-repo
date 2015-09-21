@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 
 new Vue ({
 
@@ -8,6 +10,10 @@ new Vue ({
 		candidateId :'',
 
 		likes :0,
+
+		liked: false,
+
+		favorited: false,
 
 	},
 
@@ -25,15 +31,16 @@ new Vue ({
 
 		    }).success(function (data, status, request) {
 		          
+
 		          if(data.result=='destroyed'){
 
-		          	that.likes=that.likes-1;
+		          	that.favorited=false;
 
 		          }
 
 		          if(data.result=='created'){
 
-		          	that.likes=that.likes-1;
+		          	that.favorited=true;
 
 		          }		          
 
@@ -48,14 +55,21 @@ new Vue ({
 
 		    	  var that=this;
 
+		    	  var like=parseInt(that.likes);
+
+
 		          if(data.result=='destroyed'){
 
-		          	that.likes=that.likes-1;
+		          	that.likes=like-1;
+
+		          	that.liked=false;
 
 		          }
 		          if(data.result=='created'){
 
-		          	that.likes=that.likes+1;
+		          	that.likes=like+1;
+
+		          	that.liked=true;
 
 		          }
 
@@ -72,3 +86,5 @@ new Vue ({
 
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
+
+});

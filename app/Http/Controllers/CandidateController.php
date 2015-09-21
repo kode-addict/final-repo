@@ -38,7 +38,7 @@ class CandidateController extends Controller
             return json_encode($candidateList);
             
         }
-    
+        
 
         return view('candidate.all',compact('candidateList'));
     }
@@ -72,10 +72,16 @@ class CandidateController extends Controller
      */
     // test data http://localhost/ewa2015/public/candidate/55fa683a11b7f310c6884f03
     
-    public function show(ApiRepository $apirepo,$id)
+    public function show(Request $request,ApiRepository $apirepo,$id)
     {
-       
+        
         $candidate=$apirepo->getCandidateById($id);
+
+        if($request->ajax()){
+
+            return json_encode($candidate);
+        
+        }
 
         $likes=\App\LikeCandidate::where('candidate_id',$id)->count();
 

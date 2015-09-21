@@ -7,31 +7,18 @@ use App\ApiRepo\ApiRepository;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class PartyController extends Controller
+class PartyCandidateController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index(Request $request,ApiRepository $apiRepository)
+    public function index()
     {
+          $candidateList=$apirepo->getCandidateListByParty($request);
 
-        if($request->has('page'))
-        {   
-            //when request have page it goes with pagination parameter
-
-            $partyList=$apiRepository->getPartyList($request->get('page'));
-        }
-
-        else
-        {
-            $partyList=$apiRepository->getPartyList();
-        }
-
-        //dd($partyList);
-        
-        return view('party.all',compact('partyList'));
+          
     }
 
     /**
@@ -61,20 +48,9 @@ class PartyController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show(ApiRepository $apiRepository,$id)
+    public function show($id)
     {
-        try {
-            
-            $party=$apiRepository->getPartyById($id);
-
-            return view('party.show',compact('party'));
-
-        } catch (Exception $e) {
-            
-            echo $e->message;
-        }
-        
-
+        //
     }
 
     /**

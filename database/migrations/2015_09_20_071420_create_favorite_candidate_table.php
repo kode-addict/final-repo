@@ -14,11 +14,11 @@ class CreateFavoriteCandidateTable extends Migration
     {
         Schema::create('favorite_candidate', function (Blueprint $table) {
 
+            $table->increments('id');
+
             $table->integer('user_id')->unsigned();
 
             $table->string('candidate_id');
-
-            $table->boolean('status');
 
             $table->foreign('user_id')->references('id')->on('users');
 

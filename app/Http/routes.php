@@ -32,6 +32,8 @@ Route::resource('like','LikeController');
 
 Route::get('user/favorites','UserController@getFavoriteList');
 
+Route::resource('party.candidate', 'PartyCandidateController');
+
 $router->get('candidate/search/{name}', 'CandidateController@candidateSearch');
 
 $router->get('candidatelist/search', 'CandidateController@candidateListSearch');

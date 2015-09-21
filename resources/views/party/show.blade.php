@@ -22,8 +22,8 @@
 				<p><i class="teal student icon"></i> Members : {{$party->data->member_count }}</p>
 				<p><i class="teal suitcase icon"></i> Leadership : {{$party->data->leadership[0] }}</p>
 				<p><i class="teal map pin icon"></i> Party Address : {{ $party->data->headquarters}}</p>				
-				<p><i class="teal map icon"></i> Region : {{ $party->data->region}}</p>				
-
+				<p><i class="teal map icon"></i> Region : {{ $party->data->region}}</p>			
+				<a href='{{ route('candidate.index') ."?party=".$party->data->id }}'> See members </a>
 				<br>
 			</div>
 

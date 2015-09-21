@@ -33,9 +33,38 @@
 			</div>
 			<div>
 
-				<a v-on="click : favorite($event,candidateId)"><i class="icon heart large up grey"></i></a>
+				@if(Auth::check())
 
-				<span>@{{ likes }}</span><a v-on="click : like($event,candidateId)"> <i class="icon thumbs large up" v-class="blue:liked"></i></a>
+					@if(auth()->user()->checkFavoriteCandidate($candidate->data->id))
+
+						<input class="hidden" v-model="favorited" value="true">
+						
+						<a v-on="click : favorite($event,candidateId)"><i class="icon heart large up favoritebtn" v-class="red:favorited"></i></a>
+					
+					@else
+
+						<a v-on="click : favorite($event,candidateId)"><i class="icon heart large up favoritebtn" v-class="red:favorited"></i></a>
+
+					@endIf
+
+				@endIf
+
+				<span>@{{ likes }} likes</span>
+
+				@if(Auth::check()) 
+
+					@if(auth()->user()->checkLikeCandidate($candidate->data->id))
+
+						<input class="hidden" v-model="liked" value="true">
+						<a v-on="click : like($event,candidateId)"> <i class="icon thumbs likebtn large up" v-class="blue:liked"></i></a>
+					@else
+
+						<a v-on="click : like($event,candidateId)"> <i class="icon thumbs likebtn large up" v-class="blue:liked"></i></a>
+					
+					@endIf
+
+
+				@endIf
 
 			</div>
 

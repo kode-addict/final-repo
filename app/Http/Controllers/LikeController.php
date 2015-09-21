@@ -38,9 +38,11 @@ class LikeController extends Controller
     public function store(Request $request)
     {
 
-        if($this->checkLikeExist()==1){
+        $candidateId=$request->input('candidate_id');
 
-            $like=\App\LikeCandidate::where('user_id',auth()->user()->id)->first();
+        if($this->checkLikeExist($candidateId)==1){
+
+            $like=\App\LikeCandidate::where('user_id',auth()->user()->id)->where('candidate_id',$candidateId)->first();
 
             $like->delete();
 
@@ -52,7 +54,7 @@ class LikeController extends Controller
         \App\LikeCandidate::create([
 
                 'user_id'   => auth()->user()->id,
-                'candidate_id'  => $request->input('candidate_id')
+                'candidate_id'  => $candidateId
             ]);
 
              return response()->json(['result' => 'created']);
@@ -61,9 +63,9 @@ class LikeController extends Controller
     }
 
 
-    protected function checkLikeExist(){
+    protected function checkLikeExist($candidateId){
 
-        $result=\App\LikeCandidate::where('user_id',auth()->user()->id)->count();
+        $result=\App\LikeCandidate::where('user_id',auth()->user()->id)->where('candidate_id',$candidateId)->count();
 
         return $result;
     }

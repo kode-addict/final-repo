@@ -34,17 +34,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = ['password', 'remember_token'];
 
 
-    public function reviews()
+    public function checkLikeCandidate($candidateId)
     {
 
-        return $this->belongsToMany(Review::class);
+        return \App\LikeCandidate::where('candidate_id',$candidateId)->where('user_id',auth()->user()->id)->count();
 
     }
-
-    public function candidates()
+    public function checkFavoriteCandidate($candidateId)
     {
 
-        return $this->belongsToMany(Candidate::class);
+        return \App\FavoriteCandidate::where('candidate_id',$candidateId)->where('user_id',auth()->user()->id)->count();
 
-    }
+    }    
+
 }
