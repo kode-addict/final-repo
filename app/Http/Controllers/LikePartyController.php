@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class LikeController extends Controller
+class LikePartyController extends Controller
 {
-
-
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -20,11 +18,11 @@ class LikeController extends Controller
     public function store(Request $request)
     {
 
-        $candidateId=$request->input('candidate_id');
+        $candidateId=$request->input('party_id');
 
         if($this->checkLikeExist($candidateId)==1){
 
-            $like=\App\LikeCandidate::where('user_id',auth()->user()->id)->where('candidate_id',$candidateId)->first();
+            $like=\App\LikeParty::where('user_id',auth()->user()->id)->where('party_id',$candidateId)->first();
 
             $like->delete();
 
@@ -33,10 +31,10 @@ class LikeController extends Controller
         }
         else{
 
-        \App\LikeCandidate::create([
+        \App\LikeParty::create([
 
                 'user_id'   => auth()->user()->id,
-                'candidate_id'  => $candidateId
+                'party_id'  => $candidateId
             ]);
 
              return response()->json(['result' => 'created']);
@@ -47,11 +45,10 @@ class LikeController extends Controller
 
     protected function checkLikeExist($candidateId){
 
-        $result=\App\LikeCandidate::where('user_id',auth()->user()->id)->where('candidate_id',$candidateId)->count();
+        $result=\App\LikeParty::where('user_id',auth()->user()->id)->where('party_id',$candidateId)->count();
 
         return $result;
     }
-
 
 
 }

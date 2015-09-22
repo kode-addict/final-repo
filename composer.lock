@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ba35e9faedd25fbbb242c640402420c7",
+    "hash": "8f557a3c3dd8c2064fa2dfeefca790b4",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -662,16 +662,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.1.6",
+            "version": "v5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "8b7c357e78b8fb6a2e48377cf2441441aac6dd1e"
+                "reference": "28a91965be7579aa159171e75cb66ee9e927c882"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/8b7c357e78b8fb6a2e48377cf2441441aac6dd1e",
-                "reference": "8b7c357e78b8fb6a2e48377cf2441441aac6dd1e",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/28a91965be7579aa159171e75cb66ee9e927c882",
+                "reference": "28a91965be7579aa159171e75cb66ee9e927c882",
                 "shasum": ""
             },
             "require": {
@@ -708,7 +708,7 @@
                     "email": "adam@laravelcollective.com"
                 }
             ],
-            "time": "2015-09-03 17:16:48"
+            "time": "2015-06-18 02:13:55"
         },
         {
             "name": "league/flysystem",

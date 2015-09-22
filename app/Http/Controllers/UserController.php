@@ -86,11 +86,13 @@ class UserController extends Controller
     }
 
     public function getFavoriteList(){
+
+        $authId=auth()->user()->id;
     
-        $favoritelist=\App\FavoriteCandidate::all();
+        $favoritecandidatelist=\App\FavoriteCandidate::where('user_id',$authId)->get();
 
-        $favorites=json_encode($favoritelist);
+        $favoritepartylist=\App\FavoriteParty::where('user_id',$authId)->get();
 
-        return view('user.favorites',compact('favorites'));
+        return view('user.favorites',compact('favoritecandidatelist','favoritepartylist'));
     }
 }

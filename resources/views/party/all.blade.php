@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="ui one column grid infinite">
+	<div class="ui one column grid infiniteParty">
 
 		@foreach($partyList->data as $party)
 
@@ -35,7 +35,7 @@
 
 			<br>
 
-			<h2 class="ui header"></h2>
+			<h2 class="ui header"><a href=""> </a></h2>
 
 			<img class="ui bordered image candidateSmall">
 
@@ -49,6 +49,7 @@
 
 		</div>
 
+		<input type="hidden" id="currentpartyurl" value="{{ url('/party') }}">
 
 		@if( $partyList->_meta->total_pages > 1)
 

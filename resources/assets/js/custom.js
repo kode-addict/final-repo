@@ -179,7 +179,7 @@ $('#step3').hide();
 
 
 
-$('.container .content .ui.grid')
+$('.container .content .ui.grid.infiniteCandidate')
   	
   	.visibility({
 
@@ -204,7 +204,7 @@ $('.container .content .ui.grid')
 
 					$.each(datas.data,function(key,value){		
 						
-						return buildCandidateList(value.name,value.photo_url,that);	
+						return buildCandidateList(value.id,value.name,value.photo_url,that);	
 
 					});
 
@@ -219,30 +219,21 @@ $('.container .content .ui.grid')
   
   	});
 
-  	function buildCandidateList(name,image,that){
+  	function buildCandidateList(id,name,image,that){
 
   		var root=$('#template').clone();
 
-  		$(root).removeClass('hidden').children('.header').text(name);
+  		var url=$('#currentcandidateurl').val()+'/'+id;
+
+  		$(root).removeClass('hidden');
 
   		$(root).children('img').attr('src',image);
+
+  		$(root).find('.header a').attr('href',url).text(name);
 
   		return root.appendTo(that);
 
   	}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

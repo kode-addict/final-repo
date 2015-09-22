@@ -29,8 +29,14 @@ class PartyController extends Controller
             $partyList=$apiRepository->getPartyList();
         }
 
-        //dd($partyList);
+        if($request->ajax()){
+
+            return json_encode($partyList);
+
+        }
+
         
+
         return view('party.all',compact('partyList'));
     }
 
@@ -61,18 +67,22 @@ class PartyController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show(ApiRepository $apiRepository,$id)
+    public function show(Request $request,ApiRepository $apiRepository,$id)
     {
-        try {
-            
-            $party=$apiRepository->getPartyById($id);
 
-            return view('party.show',compact('party'));
+        $likes=\App\LikeParty::where('party_id',$id)->count();
 
-        } catch (Exception $e) {
-            
-            echo $e->message;
+        $party=$apiRepository->getPartyById($id);
+
+        if($request->ajax()){
+
+            return json_encode($party);
+
         }
+
+        return view('party.show',compact('party','likes'));
+
+ 
         
 
     }

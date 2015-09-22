@@ -2,10 +2,10 @@
 
 @section('content')
 	
-	<br><br><br><br>
+	<br>
 
 <div class="ui text container">
-
+	<a href="{{ url('party').'/'.$candidate->data->party->id }}" class="partyTimelineAtag"><img src="{{ $candidate->data->party->party_flag }}" class="partyTimeline"></a>
 	<section class="about-candidate ui raised segment" id="candidate"> 
 			<img class="ui small bordered rounded image candidate-img" src="{{ $candidate->data->photo_url }}">
 			<div class="ui right aligned grid">
@@ -27,7 +27,13 @@
 				<p><i class="teal map pin icon"></i> Town : {{ $candidate->data->ward_village}}</p>				
 				<p><i class="teal male icon"></i> Father : {{ $candidate->data->father->name}}</p>				
 				<p><i class="teal female icon"></i> Mother : {{ $candidate->data->mother->name}}</p>				
-				<p><i class="teal tag icon"></i> Asa : {{ $candidate->data->legislature}}</p>				
+				<p><i class="teal tag icon"></i> Asa : {{ $candidate->data->legislature}}</p>
+				<p>
+					<i class="teal tag icon"></i> Party : 
+					<a href="{{ url('party').'/'.$candidate->data->party->id }}"> 
+						{{ $candidate->data->party->party_name  }} 
+					</a>
+				</p>				
 
 				<br>
 			</div>
@@ -70,4 +76,7 @@
 
 		</section> <!-- Candidate Detail END -->
 </div>
+
+	
+	<br><br>
 @stop

@@ -2,7 +2,15 @@
 
 @section('content')
 
-	<div class="ui one column grid" id="infiniteCandidate">
+
+	@if(Request::has('party'))
+
+		@if( !$candidateList->data == null)
+		<h1> <a href="{{ url('party').'/'.$candidateList->data[0]->party->id }}"> {{ $candidateList->data[0]->party->party_name}} </a> </h1>
+		@endIf
+	@endIf
+
+	<div class="ui one column grid infiniteCandidate">
 
 		@foreach($candidateList->data as $candidate)
 
@@ -35,7 +43,7 @@
 
 			<br>
 
-			<h2 class="ui header"></h2>
+			<h2 class="ui header"><a></a></h2>
 
 			<img class="ui bordered image candidateSmall">
 
@@ -49,6 +57,7 @@
 
 		</div>
 
+		<input type="hidden" id="currentcandidateurl" value="{{ url('/candidate') }}">
 
 		@if( $candidateList->meta->pagination->total_pages > 1)
 

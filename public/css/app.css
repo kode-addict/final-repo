@@ -35088,4 +35088,14 @@ html.ios body {
 .likebtn,.favoritebtn{
   color: gray;
 }
+
+.partyTimelineAtag{
+  display: inline-block !important;
+  width: 100%;
+}
+
+.partyTimeline{
+  width: 100%;
+  max-height: 280px;
+}
 /*# sourceMappingURL=app.css.map */

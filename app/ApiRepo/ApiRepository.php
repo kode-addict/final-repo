@@ -72,7 +72,7 @@ class ApiRepository
 	    $response=$this
 	    			->client
 	    			->request(
-	    					'GET', $this->candidateEndpoint.'list?token='.$this->getToken().$parameters
+	    					'GET', $this->candidateEndpoint.'list?token='.$this->getToken().$parameters.'&_with=party'
 	    				);
 
 		return $this->getJsonValue($response);				
@@ -346,6 +346,12 @@ class ApiRepository
 
  		return $this->getJsonValue($response);			
 	}
+
+
+	public function getAssociatedCandidate($candidate)
+	{
+
+	}	
 
 	protected function getJsonValue($response)
 	{

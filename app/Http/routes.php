@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-// Auth::loginUsingId(1);
+
 
 Route::resource('/','MainController');
 
@@ -26,9 +26,13 @@ Route::resource('faq','FaqController');
 
 Route::resource('geo','GeoController');
 
-Route::resource('favorite','FavoriteController');
+Route::post('favorite','FavoriteController@store');
 
-Route::resource('like','LikeController');
+Route::post('like','LikeController@store');
+
+Route::post('favoriteparty','FavoritePartyController@store');
+
+Route::post('likeparty','LikePartyController@store');
 
 Route::get('user/favorites','UserController@getFavoriteList');
 

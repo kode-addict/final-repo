@@ -45,6 +45,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
         return \App\FavoriteCandidate::where('candidate_id',$candidateId)->where('user_id',auth()->user()->id)->count();
 
-    }    
+    }
+
+    public function checkLikeParty($partyId)
+    {
+
+        return \App\LikeParty::where('party_id',$partyId)->where('user_id',auth()->user()->id)->count();
+
+    }
+
+    public function checkFavoriteParty($partyId)
+    {
+
+        return \App\FavoriteParty::where('party_id',$partyId)->where('user_id',auth()->user()->id)->count();
+
+    }           
 
 }
