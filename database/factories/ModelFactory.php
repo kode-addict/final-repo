@@ -29,12 +29,16 @@ $factory->define(App\Candidate::class, function ($faker) {
     ];
 });
 
-$factory->define(App\Review::class, function ($faker) {
+$factory->define(App\CandidateReview::class, function ($faker) {
+
+    $candidate_ids = App\Candidate::lists('id')->toArray();
+    $user_ids = App\User::lists('id')->toArray();
 
     return [
-        'candidate_id' 	=> $faker->name,
-        'user_id' 		=> $faker->text,
-        'content'		=> $faker->text
+        'candidate_id' 	=> rand(min($candidate_ids), max($candidate_ids)),
+        'user_id' 		=> rand(min($user_ids), max($user_ids)),
+        'review'		=> $faker->paragraph
     ];
+    
 });
 

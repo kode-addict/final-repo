@@ -22,7 +22,7 @@ class GeoController extends Controller
 
             return json_encode($DistrictList);
         }
-
+        dd($DistrictList);
         echo json_encode($DistrictList);
     }
 
