@@ -41217,61 +41217,281 @@ $('#step3').hide();
 
 
 
-$('.container .content .ui.grid.infiniteCandidate')
-  	
-  	.visibility({
 
-    	once: false,
-    	// update size when new content loads
-    	observeChanges: true,
-    	// load content on bottom edge visible
-    	onBottomVisible: function() {
+$('#statestep2').hide();
 
-    		var that=$(this);
-
-    		var next=$('#paginate').val();
-
-    		console.log(next);
-
-    		if(next!=null && next!=''){
-
-    			var nextlink=next.replace('/?','');
-
-	      		$.get(window.location.href+'&'+nextlink,function(datas){
+$('#statestep3').hide();
 
 
-					$.each(datas.data,function(key,value){		
-						
-						return buildCandidateList(value.id,value.name,value.photo_url,that);	
+	$('#statestep1 .done').click(function() {
 
-					});
+		$('#statestep1')
 
+		  .transition('fade',function() {
+		    	
+		    	$('#statestep2').transition('fade');
+
+		  });
+
+		$('#statestep1header').addClass('grey');
+
+		$('#statestep1header i').removeClass('hidden');
+
+		$('#statestep2header').removeClass('grey');
+
+		var statename=$('#statestep1 select').val();
+
+		var select=$('#statestep2 select');
+
+		$.ajax({
+	    	
+	    	type:"GET",
+
+	    	url:'geo?st_name='+statename+'&no_geo=true',
+
+	    	dataType:'json',
+	    	
+	    	beforeSend:function(data){ 
+	    		$('#statestep2 .dimmer').addClass('active');
+	    	},
+	    	success:function(datas){
+				
+				select.children("option:not(:first-child)").remove();
+				
+				$.each(datas.data,function(key,value){		
 					
-					$('#paginate').val(datas.meta.pagination.links.next);
-	      			
+					return buildOption(value.properties.DT,value.properties.DT_PCODE,select);	
 
-	      		},"json"); 
-    		}    	
-      		
-    	}
-  
-  	});
+				});	 
+				   		
+	        	$('#statestep2 .dimmer').removeClass('active');
+	    	}
+		});		
 
-  	function buildCandidateList(id,name,image,that){
+	});
 
-  		var root=$('#template').clone();
 
-  		var url=$('#currentcandidateurl').val()+'/'+id;
 
-  		$(root).removeClass('hidden');
 
-  		$(root).children('img').attr('src',image);
+	$('#statestep2 .done').click(function() {
 
-  		$(root).find('.header a').attr('href',url).text(name);
+		$('#statestep2')
 
-  		return root.appendTo(that);
+		  .transition('fade',function() {
+		    	
+		    	$('#statestep3').transition('fade');
 
-  	}
+		  });
+
+		$('#statestep2header i').removeClass('hidden');
+
+		$('#statestep2header').addClass('grey');
+
+		$('#statestep3header').removeClass('grey');
+
+		var districtcode=$('#statestep2 select').val();		
+
+		var select=$('#statestep3 select');
+
+
+
+		$.ajax({
+	    	
+	    	type:"GET",
+
+	    	url:'geo/lowerhouse?dt_pcode='+districtcode+'&no_geo=true',
+
+	    	dataType:'json',
+	    	
+	    	beforeSend:function(data){ 
+	    		$('#statestep3 .dimmer').addClass('active');
+	    	},
+	    	success:function(datas){
+				
+				select.children("option:not(:first-child)").remove();
+				
+				$.each(datas.data,function(key,value){		
+					
+					return buildOption(value.properties.TS,value.properties.TS_PCODE,select);	
+
+				});	 
+				   		
+	        	$('#statestep3 .dimmer').removeClass('active');
+	    	}
+		});
+
+	});
+
+
+	$('#statestep2 .back').click(function() {
+
+		$('#statestep2')
+
+		  .transition('fade',function() {
+		    		
+		    		$('#statestep1').transition('fade');
+		    	
+		  });
+
+		$('#statestep1header i').addClass('hidden');  
+
+		$('#statestep2header').addClass('grey');
+
+		$('#statestep1header').removeClass('grey');
+
+
+	});
+
+
+	$('#statestep3 .back').click(function(e) {
+
+		e.preventDefault();
+
+		$('#statestep3')
+
+		  .transition('fade',function() {
+		    		
+		    		$('#statestep2').transition('fade');
+		    	
+		  });
+
+		$('#statestep2header i').addClass('hidden');
+
+		$('#statestep3header').addClass('grey');
+
+		$('#statestep2header').removeClass('grey');
+
+
+	});
+
+	$('#statestep3 .done').click(function(e) {
+
+		e.preventDefault();
+
+		$('#statestep3header i').removeClass('hidden');
+
+		$('#statestep3 form').submit();
+
+
+	});
+
+	function buildOption(name,code,select){
+			
+
+			var option=$('<option>').val(code).text(name);
+
+			return option.appendTo(select);
+	}
+
+
+
+
+
+
+
+
+
+
+$('#upperstep2').hide();
+
+
+
+
+	$('#upperstep1 .done').click(function() {
+
+		$('#upperstep1')
+
+		  .transition('fade',function() {
+		    	
+		    	$('#upperstep2').transition('fade');
+
+		  });
+
+		$('#upperstep1header').addClass('grey');
+
+		$('#upperstep1header i').removeClass('hidden');
+
+		$('#upperstep2header').removeClass('grey');
+
+		var statename=$('#upperstep1 select').val();
+
+		var select=$('#upperstep2 select');
+
+		$.ajax({
+	    	
+	    	type:"GET",
+
+	    	url:'geo/upperhouse?st_name='+statename+'&no_geo=true',
+
+	    	dataType:'json',
+	    	
+	    	beforeSend:function(data){ 
+	    		$('#upperstep2 .dimmer').addClass('active');
+	    	},
+	    	success:function(datas){
+				console.log(datas);
+				select.children("option:not(:first-child)").remove();
+				
+				$.each(datas.data,function(key,value){		
+					
+					return buildOptionUpper(value.properties.constituency_name_en,value.properties.constituency_number,value.properties.AM_PCODE,select);	
+
+				});	 
+				   		
+	        	$('#upperstep2 .dimmer').removeClass('active');
+	    	}
+		});		
+
+	});
+
+
+
+
+	$('#upperstep2 .back').click(function(e) {
+
+		e.preventDefault();
+
+		$('#upperstep2')
+
+		  .transition('fade',function() {
+		    		
+		    		$('#upperstep1').transition('fade');
+		    	
+		  });
+
+		$('#upperstep1header i').addClass('hidden');  
+
+		$('#upperstep2header').addClass('grey');
+
+		$('#upperstep1header').removeClass('grey');
+
+
+	});
+
+
+
+
+	$('#upperstep2 .done').click(function(e) {
+
+		e.preventDefault();
+
+		$('#upperstep2header i').removeClass('hidden');
+
+		$('#upperstep2 form').submit();
+
+
+	});
+
+	function buildOptionUpper(name,number,code,select){
+			
+
+			var option=$('<option>').val(code).text(name+number);
+
+			return option.appendTo(select);
+	}
+
+
+
 
 
 
@@ -41289,6 +41509,12 @@ $('.container .content .ui.grid.infiniteCandidate')
 $(document).ready(function(){
 
 
+$('.button')
+  .popup({
+		hoverable: true,
+  })
+;
+
 new Vue ({
 
 	el : '#candidate',
@@ -41303,8 +41529,47 @@ new Vue ({
 
 		favorited: false,
 
-	},
+		legislature:'',
 
+		amcode: '',
+
+		tspcode: '',
+
+		cnumber: 0,
+
+		compare:[],
+
+	},
+	ready: function() {
+
+			var place;
+
+			if(this.amcode==''){
+				
+				data={ constituency_ts_pcode:this.tspcode , legislature:this.legislature,constituency_number :this.cnumber};
+			}
+			else{
+
+				data={ constituency_am_pcode:this.amcode ,legislature:this.legislature,constituency_number:this.cnumber };
+			}
+
+			var that=this;
+
+		    this.$http.get('../candidate',data,function (data, status, request) {
+
+				data.data.forEach(function(value){
+
+					that.compare.push(value);
+
+				});
+
+
+		    }).error(function (data, status, request) {
+		          
+		          // handle error
+		    })		
+
+	},
 	methods: {
 
 		favorite : function(e,id){
@@ -41366,6 +41631,11 @@ new Vue ({
 		          // handle error
 		    })
 
+		},
+		compare : function(e){
+
+			alert('hi');
+
 		}				
 
 	},
@@ -41374,6 +41644,72 @@ new Vue ({
 
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
+
+
+
+
+
+
+
+$('.container .content .ui.grid.infiniteCandidate')
+  	
+  	.visibility({
+
+    	once: false,
+    	// update size when new content loads
+    	observeChanges: true,
+    	// load content on bottom edge visible
+    	onBottomVisible: function() {
+
+    		var that=$(this);
+
+    		var next=$('#paginate').val();
+
+    		console.log(next);
+
+    		if(next!=null && next!=''){
+
+    			var nextlink=next.replace('/?','');
+
+	      		$.get(window.location.href+'&'+nextlink,function(datas){
+
+
+					$.each(datas.data,function(key,value){		
+						
+						return buildCandidateList(value.id,value.name,value.photo_url,that);	
+
+					});
+
+					
+					$('#paginate').val(datas.meta.pagination.links.next);
+	      			
+
+	      		},"json"); 
+    		}    	
+      		
+    	}
+  
+  	});
+
+  	function buildCandidateList(id,name,image,that){
+
+  		var root=$('#template').clone();
+
+  		var url=$('#currentcandidateurl').val()+'/'+id;
+
+  		$(root).removeClass('hidden');
+
+  		$(root).children('img').attr('src',image);
+
+  		$(root).find('.header a').attr('href',url).text(name);
+
+  		return root.appendTo(that);
+
+  	}
+
+
+
+
 
 });
 $(document).ready(function(){
@@ -41528,6 +41864,13 @@ new Vue ({
 
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
+
+});
+$(document).ready(function(){
+
+
+
+
 
 });
 //# sourceMappingURL=app.js.map

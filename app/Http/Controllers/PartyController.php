@@ -35,9 +35,9 @@ class PartyController extends Controller
 
         }
 
-        
+        $popularParty=\App\LikeParty::select('*',\DB::raw('count(party_id) as count'))->groupBy('party_id')->orderBy('count','desc')->take(5)->get();
 
-        return view('party.all',compact('partyList'));
+        return view('party.all',compact('partyList','popularParty'));
     }
 
     /**

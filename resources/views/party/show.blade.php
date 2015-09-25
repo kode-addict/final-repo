@@ -21,13 +21,14 @@
  			<input v-show="false" v-model="partyId" value="{{ $party->data->id}}">
 
 			<div class="ui text container">
-				<h3>{{ $party->data->party_name_english }}</h3>
+				<h3>{{ $party->data->party_name_english }} ( {{$party->data->party_name}} )</h3>
 				<p><i class="teal student icon"></i> Members : {{$party->data->member_count }}</p>
 				<p><i class="teal suitcase icon"></i> Leadership : {{$party->data->leadership[0] }}</p>
 				<p><i class="teal map pin icon"></i> Party Address : {{ $party->data->headquarters}}</p>				
-				<p><i class="teal map icon"></i> Region : {{ $party->data->region}}</p>			
-				<a href='{{ route('candidate.index') ."?party=".$party->data->id }}'> See members </a>
-				<br>
+				<p><i class="teal map icon"></i> Region : {{ $party->data->region}}</p>	
+				<p><i class="teal map icon"></i> Policy : <a href="{{ $party->data->policy}}"> Download Policy</a></p>			
+				<a href='{{ route('candidate.index') ."?party=".$party->data->id }}'> <i class="teal users icon"></i>  See members </a>
+				<br><br>
 			</div>
 
 			<div>
@@ -48,7 +49,7 @@
 
 				@endIf
 
-				<span>@{{ likes }} likes</span>
+				<span>@{{ likes }} votes</span>
 
 				@if(Auth::check()) 
 
@@ -68,7 +69,13 @@
 			</div>
 
 		</section> <!-- Candidate Detail END -->
-
+   <div class="fb-share-button" 
+        data-href="{{ Request::url() }}" 
+        data-layout="button_count">
+    </div>
+		
+	<div class="fb-comments" data-href="{{ Request::url() }}" data-numposts="5" width="100%" data-version="v2.3"></div>
 </div>
 <br><br>
+
 @stop

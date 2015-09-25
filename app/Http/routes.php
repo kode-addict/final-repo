@@ -10,13 +10,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+ Auth::loginUsingId(1);
 
 Route::resource('/','MainController');
 
 $router->get('test','CandidateController@index');
 
 Route::get('geo/lowerhouse','GeoController@lowerHouse');
+
+Route::get('geo/upperhouse','GeoController@upperHouse');
 
 Route::resource('candidate','CandidateController');
 

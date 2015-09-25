@@ -3,33 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ApiRepo\ApiRepository;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class GeoController extends Controller
+class FrontendUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,ApiRepository $apirepo)
+    public function index()
     {
-        $DistrictList=$apirepo->getDistrictListBySearch($request);
-
-        if($request->ajax()){
-
-            return json_encode($DistrictList);
-        }
-
-        echo json_encode($DistrictList);
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -39,8 +31,8 @@ class GeoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -51,7 +43,7 @@ class GeoController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -62,7 +54,7 @@ class GeoController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -72,9 +64,9 @@ class GeoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -85,24 +77,10 @@ class GeoController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
-
-    public function lowerHouse(Request $request,ApiRepository $apirepo)
-    {   
-        $lowerHouse=$apirepo->getLowerHouseBySearch($request);
-        
-        return json_encode($lowerHouse);
-    }
-
-    public function upperHouse(Request $request,ApiRepository $apirepo)
-    {   
-        $upperHouse=$apirepo->getUpperHouseBySearch($request);
-        
-        return json_encode($upperHouse);
-    }    
 }

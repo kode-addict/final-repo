@@ -29,7 +29,8 @@ elixir(function(mix) {
                '../vue/vueresource.js',
     			'custom.js',
                 'candidate.js',
-                'party.js'
+                'party.js',
+                'compare.js'
 
     		],'public/js/app.js');
 
