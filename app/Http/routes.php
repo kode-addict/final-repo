@@ -48,3 +48,7 @@ $router->get('candidate/searchajax/{name}', 'CandidateController@candidateSearch
 $router->get('candidate/compare/{p1}/{p2}', 'CandidateController@compare');
 
 $router->get('candidatelist/search', 'CandidateController@candidateListSearch');
+
+Route::get('howto', function(){
+	return view('howto');
+});

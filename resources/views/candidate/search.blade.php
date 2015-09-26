@@ -2,48 +2,91 @@
 
 @section('content')
 
-
 	@if(Request::has('party'))
 
 		@if( !$candidateList->data == null)
-		<h1> <a href="{{ url('party').'/'.$candidateList->data[0]->party->id }}"> {{ $candidateList->data[0]->party->party_name}} </a> </h1>
+		<h1 class="ui center aligned header"> <a ref="{{ url('party').'/'.$candidateList->data[0]->party->id }}"> {{ $candidateList->data[0]->party->party_name}} </a> </h1>
 		@endIf
+
 	@endIf
-<div class="ui grid" id="content">
+
+		<!-- <div class="ui one column infiniteCandidate"> -->
+
+	<div class="ui infiniteCandidate">
 	
-
-	<div class="ui twelve wide computer column">
-
-	<h3>Search Results {{ $candidateList->meta->pagination->total }} Candidate founds</h3>
-
-	<div class="ui one column grid infiniteCandidate">
+	<h3 class="ui header aligned center">Search Results {{ $candidateList->meta->pagination->total }} Candidate founds</h3>
 
 		@foreach($candidateList->data as $candidate)
-
-			
-			<div class="column">
-
-			<br>
-
-			<h2 class="ui header"><a href="{{ route('candidate.show',$candidate->id) }}">{{ $candidate->name }} </a></h2>
-
-			<img src="{{ $candidate->photo_url }}" class="ui bordered image candidateSmall">
-
-			<i class="thumbs outline up icon"></i>
-
-			<i class="thumbs outline down icon"></i>
-
-			<br>
-
-			<div class="ui divider"></div>		
-
+			<div class="ui text container">
+				<section class="ui text container push-down">
+					<div class="segments">
+						<div class="ui raised segment">
+							<div class="ui internally celled grid">
+								<div class="row">
+							      <div class="three wide column">
+							        <img class="ui candidate image" src="{{ $candidate->photo_url }}">
+							      </div>
+							      <div class="ten wide column middle aligned">
+							      		<h2 class="header"> 
+							      			<a href="{{ route('candidate.show',$candidate->id) }}">{{ $candidate->name }}</a>
+							      		</h2>
+										<p>
+											<i class="teal map pin icon"></i> 
+											State : {{ $candidate->constituency->parent}}
+										</p>
+										@if( property_exists($candidate->party,'id') )
+										<p>
+											<i class="teal users icon"></i> Party : 
+											<a href="{{ url('party').'/'.$candidate->party->id }}"> 
+												{{ $candidate->party->party_name  }} 
+											</a>
+										</p>				
+										@endif
+							      </div>
+							    </div>
+						    </div>
+				    	</div>
+					</div>
+				</section>
 			</div>
+		@endforeach
 
+		<div class="ui text hidden" id="template">
+			<section class="ui text container push-down">
+				<div class="segments">
+					<div class="ui raised segment">
+						<div class="ui internally celled grid">
+							<div class="row">
+						      <div class="three wide column">
+						        <img class="ui candidate image">
+						      </div>
+						      <div class="ten wide column middle aligned">
+						      		<h2 class="header"> 
+						      			<a></a>
+						      		</h2>
+									<p>
+										<i class="teal map pin icon"></i> 
+										State : <span class="state"></span>
+									</p>
+									<p>
+										<i class="teal users icon"></i> Party :<a href="" class="party_link"> 
+										<span class="party"></span>
+										</a>
+										 
+							
+									</p>				
+						      </div>
+						    </div>
+					    </div>
+			    	</div>
+				</div>
+			</section>
+		</div>
 
-		@endforeach()
-
-	</div>		
 	</div>
+
+		<!-- </div> -->
+
 
 	@if(Request::has('legislature'))
 
@@ -75,25 +118,10 @@
 	@endIf
 
 </div>
-		<div class="column hidden" id="template">
 
-			<br>
 
-			<h2 class="ui header"><a></a></h2>
-
-			<img class="ui bordered image candidateSmall">
-
-			<i class="thumbs outline up icon"></i>
-
-			<i class="thumbs outline down icon"></i>
-			
-			<br>
-
-			<div class="ui divider"></div>		
-
-		</div>
-
-		<input type="hidden" id="currentcandidateurl" value="{{ url('/candidate') }}">
+		<input type="hidden" id="currentcandidateurl" value="{{ url('candidate') }}">
+		<input type="hidden" id="partyurl" value="{{ url('party') }}">
 
 		@if( $candidateList->meta->pagination->total_pages > 1)
 

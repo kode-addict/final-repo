@@ -20,7 +20,7 @@
 				
 				<div class="ui right floated column">
 
-				<div class="ui button">Compare with#</div>
+				<div class="ui button">Compare#</div>
 					<div class="ui fluid popup right transition hidden">
 					  <div class="ui three column grid center aligned ">
 					    <div v-repeat="char in compare" class="column">
@@ -52,22 +52,22 @@
  			<div class="ui text container">
 				<h3>{{ $candidate->data->name }}</h3>							
 				<?php $date=$candidate->data->birthdate; $birthdate=Carbon\Carbon::createFromTimestamp($date) ?>
-				<p><i class="teal tag icon"></i> BirthDate : {{ $birthdate->toDateString() }} </p>
+				<p><i class="teal birthday icon"></i> BirthDate : {{ $birthdate->toDateString() }} </p>
 				<p><i class="teal student icon"></i> Education : {{$candidate->data->education }}</p>
 				<p><i class="teal suitcase icon"></i> Occupation : {{$candidate->data->occupation }}</p>
 				<p><i class="teal mars stroke icon"></i> Gender : {{ $candidate->data->gender == 'M' ? 'male' : 'female' }}</p>				
 				<p><i class="teal map pin icon"></i> Town : {{ $candidate->data->ward_village}}</p>				
 				<p><i class="teal male icon"></i> Father : {{ $candidate->data->father->name}}</p>
-				<p><i class="teal male icon"></i> Father Religion : {{ $candidate->data->father->religion}}</p>				
+				<p><i class="teal empire icon"></i> Father Religion : {{ $candidate->data->father->religion}}</p>				
 				<p><i class="teal female icon"></i> Mother : {{ $candidate->data->mother->name}}</p>
-				<p><i class="teal male icon"></i> Mother Religion : {{ $candidate->data->mother->religion}}</p>				
-				<p><i class="teal tag icon"></i> legislature : {{ $candidate->data->legislature}} </p>
-				<p><i class="teal tag icon"></i> ethnicity : {{ $candidate->data->ethnicity}}</p>
+				<p><i class="teal empire icon"></i> Mother Religion : {{ $candidate->data->mother->religion}}</p>				
+				<p><i class="teal university icon"></i> legislature : {{ $candidate->data->legislature}} </p>
+				<p><i class="teal flag icon"></i> ethnicity : {{ $candidate->data->ethnicity}}</p>
 				<p><i class="teal tag icon"></i> Constituency : {{ $candidate->data->constituency->name}} {{ $candidate->data->constituency->number}}</p>
-				<p><i class="teal tag icon"></i> State : {{ $candidate->data->constituency->parent}}</p>
+				<p><i class="teal map pin icon"></i> State : {{ $candidate->data->constituency->parent}}</p>
 				@if( property_exists($candidate->data->party,'id') )
 				<p>
-					<i class="teal tag icon"></i> Party : 
+					<i class="teal users icon"></i> Party : 
 					<a href="{{ url('party').'/'.$candidate->data->party->id }}"> 
 						{{ $candidate->data->party->party_name  }} 
 					</a>
@@ -82,10 +82,16 @@
 					@if(auth()->user()->checkFavoriteCandidate($candidate->data->id))
 
 						<input class="hidden" v-model="favorited" value="true">
+					
 						<span v-show="favorited">favorited</span>
+					
 						<a v-on="click : favorite($event,candidateId)"><i class="icon heart large up favoritebtn" v-class="red:favorited"></i></a>
 					
 					@else
+
+						<input class="hidden" v-model="favorited" value="@{{ false }}">
+					
+						<span v-show="favorited">favorited</span>
 
 						<a v-on="click : favorite($event,candidateId)"><i class="icon heart large up favoritebtn" v-class="red:favorited"></i></a>
 

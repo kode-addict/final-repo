@@ -11,10 +11,10 @@
 			<img class="ui small bordered rounded image party-img" src="{{ $party->data->party_seal }}">
 			
 			<div class="ui right aligned grid">
-				<div class="ui right floated column">
+<!-- 				<div class="ui right floated column">
 					<button class="ui button">Watch</button>
 					<button class="ui button">Review</button>									
-				</div>
+				</div> -->
 			</div><br><br>
 			<input v-show="false" v-model="likes" value="{{ $likes }}">
 
@@ -55,8 +55,13 @@
 						<input class="hidden" v-model="favorited" value="true">
 						
 						<a v-on="click : favorite($event,partyId)"><i class="icon heart large up favoritebtn" v-class="red:favorited"></i></a>
+						
 						<span v-show="favorited">favorited</span>
 					@else
+						
+						<input class="hidden" v-model="favorited" value="@{{ false }}">
+					
+						<span v-show="favorited">favorited</span>
 
 						<a v-on="click : favorite($event,partyId)"><i class="icon heart large up favoritebtn" v-class="red:favorited"></i></a>
 

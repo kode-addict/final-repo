@@ -19,6 +19,12 @@ $('#step3').hide();
 
 	$('#step1 .done').click(function() {
 
+		var statename=$('#step1 select').val();
+
+		if(statename==''){
+
+			return false;
+		}
 		$('#step1')
 
 		  .transition('fade',function() {
@@ -32,8 +38,6 @@ $('#step3').hide();
 		$('#step1header i').removeClass('hidden');
 
 		$('#step2header').removeClass('grey');
-
-		var statename=$('#step1 select').val();
 
 		var select=$('#step2 select');
 
@@ -69,6 +73,14 @@ $('#step3').hide();
 
 	$('#step2 .done').click(function() {
 
+
+
+		var districtcode=$('#step2 select').val();	
+
+		if(districtcode==''){
+			return false;
+		}
+
 		$('#step2')
 
 		  .transition('fade',function() {
@@ -82,8 +94,7 @@ $('#step3').hide();
 		$('#step2header').addClass('grey');
 
 		$('#step3header').removeClass('grey');
-
-		var districtcode=$('#step2 select').val();		
+	
 
 		var select=$('#step3 select');
 
@@ -106,7 +117,7 @@ $('#step3').hide();
 				
 				$.each(datas.data,function(key,value){		
 					
-					return buildOption(value.properties.TS,value.properties.TS_PCODE,select);	
+					return buildOption(value.properties.DT,value.properties.TS_PCODE,select);	
 
 				});	 
 				   		
@@ -160,6 +171,11 @@ $('#step3').hide();
 
 	$('#step3 .done').click(function(e) {
 
+		var ts=$('#step3 select').val();	
+
+		if(ts==''){
+			return false;
+		}
 		e.preventDefault();
 
 		$('#step3header i').removeClass('hidden');
@@ -187,6 +203,13 @@ $('#statestep3').hide();
 
 	$('#statestep1 .done').click(function() {
 
+		var statename=$('#statestep1 select').val();
+
+		if(statename==''){
+
+			return false;
+		}	
+			
 		$('#statestep1')
 
 		  .transition('fade',function() {
@@ -200,8 +223,6 @@ $('#statestep3').hide();
 		$('#statestep1header i').removeClass('hidden');
 
 		$('#statestep2header').removeClass('grey');
-
-		var statename=$('#statestep1 select').val();
 
 		var select=$('#statestep2 select');
 
@@ -237,6 +258,13 @@ $('#statestep3').hide();
 
 	$('#statestep2 .done').click(function() {
 
+
+		var districtcode=$('#step2 select').val();	
+
+		if(districtcode==''){
+			return false;
+		}
+
 		$('#statestep2')
 
 		  .transition('fade',function() {
@@ -249,9 +277,7 @@ $('#statestep3').hide();
 
 		$('#statestep2header').addClass('grey');
 
-		$('#statestep3header').removeClass('grey');
-
-		var districtcode=$('#statestep2 select').val();		
+		$('#statestep3header').removeClass('grey');	
 
 		var select=$('#statestep3 select');
 
@@ -328,6 +354,11 @@ $('#statestep3').hide();
 
 	$('#statestep3 .done').click(function(e) {
 
+		var ts=$('#statestep3 select').val();	
+
+		if(ts==''){
+			return false;
+		}
 		e.preventDefault();
 
 		$('#statestep3header i').removeClass('hidden');
@@ -361,6 +392,13 @@ $('#upperstep2').hide();
 
 	$('#upperstep1 .done').click(function() {
 
+		var statename=$('#upperstep1 select').val();
+
+		if(statename==''){
+
+			return false;
+		}
+
 		$('#upperstep1')
 
 		  .transition('fade',function() {
@@ -374,8 +412,6 @@ $('#upperstep2').hide();
 		$('#upperstep1header i').removeClass('hidden');
 
 		$('#upperstep2header').removeClass('grey');
-
-		var statename=$('#upperstep1 select').val();
 
 		var select=$('#upperstep2 select');
 
@@ -435,6 +471,12 @@ $('#upperstep2').hide();
 
 	$('#upperstep2 .done').click(function(e) {
 
+		
+		var ts=$('#upperstep2 select').val();	
+
+		if(ts==''){
+			return false;
+		}
 		e.preventDefault();
 
 		$('#upperstep2header i').removeClass('hidden');
@@ -447,7 +489,7 @@ $('#upperstep2').hide();
 	function buildOptionUpper(name,number,code,select){
 			
 
-			var option=$('<option>').val(code).text(name+number);
+			var option=$('<option>').val(code).text(name+' မဲဆန္ဒနယ် '+number);
 
 			return option.appendTo(select);
 	}
@@ -458,6 +500,9 @@ $('#upperstep2').hide();
 
 
 });
+
+
+
 
 
 

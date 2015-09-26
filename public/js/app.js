@@ -20378,6 +20378,12 @@ $('#step3').hide();
 
 	$('#step1 .done').click(function() {
 
+		var statename=$('#step1 select').val();
+
+		if(statename==''){
+
+			return false;
+		}
 		$('#step1')
 
 		  .transition('fade',function() {
@@ -20391,8 +20397,6 @@ $('#step3').hide();
 		$('#step1header i').removeClass('hidden');
 
 		$('#step2header').removeClass('grey');
-
-		var statename=$('#step1 select').val();
 
 		var select=$('#step2 select');
 
@@ -20428,6 +20432,14 @@ $('#step3').hide();
 
 	$('#step2 .done').click(function() {
 
+
+
+		var districtcode=$('#step2 select').val();	
+
+		if(districtcode==''){
+			return false;
+		}
+
 		$('#step2')
 
 		  .transition('fade',function() {
@@ -20441,8 +20453,7 @@ $('#step3').hide();
 		$('#step2header').addClass('grey');
 
 		$('#step3header').removeClass('grey');
-
-		var districtcode=$('#step2 select').val();		
+	
 
 		var select=$('#step3 select');
 
@@ -20465,7 +20476,7 @@ $('#step3').hide();
 				
 				$.each(datas.data,function(key,value){		
 					
-					return buildOption(value.properties.TS,value.properties.TS_PCODE,select);	
+					return buildOption(value.properties.DT,value.properties.TS_PCODE,select);	
 
 				});	 
 				   		
@@ -20519,6 +20530,11 @@ $('#step3').hide();
 
 	$('#step3 .done').click(function(e) {
 
+		var ts=$('#step3 select').val();	
+
+		if(ts==''){
+			return false;
+		}
 		e.preventDefault();
 
 		$('#step3header i').removeClass('hidden');
@@ -20546,6 +20562,13 @@ $('#statestep3').hide();
 
 	$('#statestep1 .done').click(function() {
 
+		var statename=$('#statestep1 select').val();
+
+		if(statename==''){
+
+			return false;
+		}	
+			
 		$('#statestep1')
 
 		  .transition('fade',function() {
@@ -20559,8 +20582,6 @@ $('#statestep3').hide();
 		$('#statestep1header i').removeClass('hidden');
 
 		$('#statestep2header').removeClass('grey');
-
-		var statename=$('#statestep1 select').val();
 
 		var select=$('#statestep2 select');
 
@@ -20596,6 +20617,13 @@ $('#statestep3').hide();
 
 	$('#statestep2 .done').click(function() {
 
+
+		var districtcode=$('#step2 select').val();	
+
+		if(districtcode==''){
+			return false;
+		}
+
 		$('#statestep2')
 
 		  .transition('fade',function() {
@@ -20608,9 +20636,7 @@ $('#statestep3').hide();
 
 		$('#statestep2header').addClass('grey');
 
-		$('#statestep3header').removeClass('grey');
-
-		var districtcode=$('#statestep2 select').val();		
+		$('#statestep3header').removeClass('grey');	
 
 		var select=$('#statestep3 select');
 
@@ -20687,6 +20713,11 @@ $('#statestep3').hide();
 
 	$('#statestep3 .done').click(function(e) {
 
+		var ts=$('#statestep3 select').val();	
+
+		if(ts==''){
+			return false;
+		}
 		e.preventDefault();
 
 		$('#statestep3header i').removeClass('hidden');
@@ -20720,6 +20751,13 @@ $('#upperstep2').hide();
 
 	$('#upperstep1 .done').click(function() {
 
+		var statename=$('#upperstep1 select').val();
+
+		if(statename==''){
+
+			return false;
+		}
+
 		$('#upperstep1')
 
 		  .transition('fade',function() {
@@ -20733,8 +20771,6 @@ $('#upperstep2').hide();
 		$('#upperstep1header i').removeClass('hidden');
 
 		$('#upperstep2header').removeClass('grey');
-
-		var statename=$('#upperstep1 select').val();
 
 		var select=$('#upperstep2 select');
 
@@ -20794,6 +20830,12 @@ $('#upperstep2').hide();
 
 	$('#upperstep2 .done').click(function(e) {
 
+		
+		var ts=$('#upperstep2 select').val();	
+
+		if(ts==''){
+			return false;
+		}
 		e.preventDefault();
 
 		$('#upperstep2header i').removeClass('hidden');
@@ -20806,7 +20848,7 @@ $('#upperstep2').hide();
 	function buildOptionUpper(name,number,code,select){
 			
 
-			var option=$('<option>').val(code).text(name+number);
+			var option=$('<option>').val(code).text(name+' မဲဆန္ဒနယ် '+number);
 
 			return option.appendTo(select);
 	}
@@ -20817,6 +20859,9 @@ $('#upperstep2').hide();
 
 
 });
+
+
+
 
 
 
@@ -20849,7 +20894,7 @@ new Vue ({
 
 		legislature:'',
 
-		amcode: '',
+		amcode: null,
 
 		tspcode: '',
 
@@ -20865,9 +20910,11 @@ new Vue ({
 
 			console.log(this.tspcode+'hihi');
 
-			if(!this.amcode==null){
+	
+			if(this.legislature=='တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်'){
 				
-				data={ constituency_am_pcode:this.amcode ,legislature:this.legislature,constituency_number:this.cnumber };
+				data={ constituency_ts_pcode:this.tspcode , legislature:'state_region',constituency_number:this.cnumber};
+				
 			}
 			else if(this.legislature=='ပြည်သူ့လွှတ်တော်'){
 
@@ -20876,7 +20923,7 @@ new Vue ({
 
 			else{
 
-				data={ constituency_ts_pcode:this.tspcode , legislature:'state_region',constituency_number:this.cnumber};
+				data={ constituency_am_pcode:this.amcode ,legislature:this.legislature,constituency_number:this.cnumber };
 			}
 
 			var that=this;
@@ -20980,7 +21027,7 @@ Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAt
 
 
 
-$('.container .content .ui.grid.infiniteCandidate')
+$('.container .infiniteCandidate')
   	
   	.visibility({
 
@@ -21005,11 +21052,11 @@ $('.container .content .ui.grid.infiniteCandidate')
 
 					$.each(datas.data,function(key,value){		
 						
-						return buildCandidateList(value.id,value.name,value.photo_url,that);	
+						return buildCandidateList(value.id,value.name,value.photo_url,value.constituency.parent,value.party.party_name,value.party.id,that);	
 
 					});
 
-					
+		
 					$('#paginate').val(datas.meta.pagination.links.next);
 	      			
 
@@ -21020,15 +21067,23 @@ $('.container .content .ui.grid.infiniteCandidate')
   
   	});
 
-  	function buildCandidateList(id,name,image,that){
+  	function buildCandidateList(id,name,image,state,party,partyid,that){
 
   		var root=$('#template').clone();
 
   		var url=$('#currentcandidateurl').val()+'/'+id;
 
+  		var partyurl=$('#partyurl').val()+'/'+partyid;
+
   		$(root).removeClass('hidden');
 
-  		$(root).children('img').attr('src',image);
+  		$(root).find('img').attr('src',image);
+
+  		$(root).find('.state').text(state);
+
+  		$(root).find('.party').text(party);
+
+  		$(root).find('.party_link').attr('href',partyurl);
 
   		$(root).find('.header a').attr('href',url).text(name);
 
@@ -21044,61 +21099,67 @@ $('.container .content .ui.grid.infiniteCandidate')
 $(document).ready(function(){
 
 
-$('.container .content .ui.grid.infiniteParty')
-  	
-  	.visibility({
+$('.container .content .ui.infiniteParty')
+    
+    .visibility({
 
-    	once: false,
-    	// update size when new content loads
-    	observeChanges: true,
-    	// load content on bottom edge visible
-    	onBottomVisible: function() {
+      once: false,
+      // update size when new content loads
+      observeChanges: true,
+      // load content on bottom edge visible
+      onBottomVisible: function() {
 
-    		var that=$(this);
+        var that=$(this);
 
-    		var next=$('#paginate').val();
+        var next=$('#paginate').val();
 
-    		console.log(next);
+        console.log(next);
 
-    		if(next!=null && next!=''){
+        if(next!=null && next!=''){
 
-    			var nextlink=next.replace('?','');
+          var nextlink=next.replace('?','');
 
-	      		$.get(window.location.href+'?'+nextlink,function(datas){
+            $.get(window.location.href+'?'+nextlink,function(datas){
 
 
-					$.each(datas.data,function(key,value){		
-						
-						return buildCandidateList(value.id,value.party_name,value.party_seal,that);	
+          $.each(datas.data,function(key,value){
+            
+            return buildPartyList(value.id,value.party_name,value.party_seal,value.chairman,value.leadership,value.headquarters,that);  
 
-					});
+          });
 
-					
-					$('#paginate').val(datas._meta.links.next);
-	      			
+          
+          $('#paginate').val(datas._meta.links.next);
+              
 
-	      		},"json"); 
-    		}    	
-      		
-    	}
+            },"json"); 
+        }     
+          
+      }
   
-  	});
+    });
 
-  	function buildCandidateList(id,name,image,that){
+    function buildPartyList(id,name,image,chairman,leadership,address,that){
 
-  		var root=$('#template').clone();
+      var root=$('#template').clone();
 
       var url=$('#currentpartyurl').val()+'/'+id;
 
-  		$(root).removeClass('hidden');
+      $(root).removeClass('hidden');
 
-  		$(root).children('img').attr('src',image);
+      $(root).find('img').attr('src',image);
+      
+      $(root).find('.leadership').text(leadership); 
+
+      $(root).find('.party_address').text(address); 
+
+      $(root).find('.chairman').text(chairman);
 
       $(root).find('.header a').attr('href',url).text(name);
 
-  		return root.appendTo(that);
+      return root.appendTo(that);
 
-  	}
+    }
 
 
 

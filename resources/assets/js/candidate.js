@@ -23,7 +23,7 @@ new Vue ({
 
 		legislature:'',
 
-		amcode: '',
+		amcode: null,
 
 		tspcode: '',
 
@@ -39,9 +39,11 @@ new Vue ({
 
 			console.log(this.tspcode+'hihi');
 
-			if(!this.amcode==null){
+	
+			if(this.legislature=='တိုင်းဒေသကြီး/ပြည်နယ် လွှတ်တော်'){
 				
-				data={ constituency_am_pcode:this.amcode ,legislature:this.legislature,constituency_number:this.cnumber };
+				data={ constituency_ts_pcode:this.tspcode , legislature:'state_region',constituency_number:this.cnumber};
+				
 			}
 			else if(this.legislature=='ပြည်သူ့လွှတ်တော်'){
 
@@ -50,7 +52,7 @@ new Vue ({
 
 			else{
 
-				data={ constituency_ts_pcode:this.tspcode , legislature:'state_region',constituency_number:this.cnumber};
+				data={ constituency_am_pcode:this.amcode ,legislature:this.legislature,constituency_number:this.cnumber };
 			}
 
 			var that=this;
@@ -154,7 +156,7 @@ Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAt
 
 
 
-$('.container .content .ui.grid.infiniteCandidate')
+$('.container .infiniteCandidate')
   	
   	.visibility({
 
@@ -179,11 +181,11 @@ $('.container .content .ui.grid.infiniteCandidate')
 
 					$.each(datas.data,function(key,value){		
 						
-						return buildCandidateList(value.id,value.name,value.photo_url,that);	
+						return buildCandidateList(value.id,value.name,value.photo_url,value.constituency.parent,value.party.party_name,value.party.id,that);	
 
 					});
 
-					
+		
 					$('#paginate').val(datas.meta.pagination.links.next);
 	      			
 
@@ -194,15 +196,23 @@ $('.container .content .ui.grid.infiniteCandidate')
   
   	});
 
-  	function buildCandidateList(id,name,image,that){
+  	function buildCandidateList(id,name,image,state,party,partyid,that){
 
   		var root=$('#template').clone();
 
   		var url=$('#currentcandidateurl').val()+'/'+id;
 
+  		var partyurl=$('#partyurl').val()+'/'+partyid;
+
   		$(root).removeClass('hidden');
 
-  		$(root).children('img').attr('src',image);
+  		$(root).find('img').attr('src',image);
+
+  		$(root).find('.state').text(state);
+
+  		$(root).find('.party').text(party);
+
+  		$(root).find('.party_link').attr('href',partyurl);
 
   		$(root).find('.header a').attr('href',url).text(name);
 
