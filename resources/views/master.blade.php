@@ -1,4 +1,3 @@
-
 <html>
 
  <meta id="token" name="token" value="{{ csrf_token() }}">
@@ -35,7 +34,6 @@
                 font-weight: 500;
                 font-family: 'Lato';
             }
-
 
 
             .title {

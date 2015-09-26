@@ -26,7 +26,7 @@
 
 			<h4 > <a href="{{ url('/party').'/'}}@{{ party.id}}"> @{{ party.party_name }}</a> </h4> 
 
-			<img src="@{{ party.party_seal }}" class="ui bordered rounded image ">
+			<img src="@{{ party.party_seal }}" class="ui bordered rounded image favoriteimage">
 
 		</div>
 

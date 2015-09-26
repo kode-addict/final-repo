@@ -13,6 +13,19 @@
 		<br><br><br><br>
 	@endIf
 
+				<div class="ui button">Compare with#</div>
+					<div class="ui fluid popup right transition hidden">
+					  <div class="ui three column grid center aligned ">
+					    <div v-repeat="char in compare" class="column">
+					    
+					      <img class="ui avatar image middle aligned" src="@{{ char.photo_url }}">
+					      <h4 class="ui header"> @{{ char.name }} </h4>
+					      
+					      <a class="ui button" href='{{ url("candidate/compare/").'/'.$candidate->data->id }}@{{ "/"+char.id}} '>Compare</a>
+					    
+					    </div>
+					  </div>
+					</div>										
 	<section class="about-candidate ui raised segment" id="candidate"> 
 			
 			<img class="ui small bordered rounded image candidate-img" src="{{ $candidate->data->photo_url }}">
@@ -57,6 +70,15 @@
 				<p><i class="teal mars stroke icon"></i> Gender : {{ $candidate->data->gender == 'M' ? 'male' : 'female' }}</p>				
 				<p><i class="teal marker icon"></i> Town : {{ $candidate->data->ward_village}}</p>				
 				<p><i class="teal male icon"></i> Father : {{ $candidate->data->father->name}}</p>
+				<p><i class="teal male icon"></i> Father Religion : {{ $candidate->data->father->religion}}</p>				
+				<p><i class="teal female icon"></i> Mother : {{ $candidate->data->mother->name}}</p>
+				<p><i class="teal male icon"></i> Mother Religion : {{ $candidate->data->mother->religion}}</p>				
+				<p><i class="teal tag icon"></i> legislature : {{ $candidate->data->legislature}} </p>
+				<p><i class="teal tag icon"></i> ethnicity : {{ $candidate->data->ethnicity}}</p>
+				<p><i class="teal tag icon"></i> Constituency : {{ $candidate->data->constituency->name}} {{ $candidate->data->constituency->number}}</p>
+				<p><i class="teal tag icon"></i> State : {{ $candidate->data->constituency->parent}}</p>
+
+				@if( property_exists($candidate->data->party,'id') )
 				<p><i class="teal empire icon"></i> Father Religion : {{ $candidate->data->father->religion}}</p>				
 				<p><i class="teal female icon"></i> Mother : {{ $candidate->data->mother->name}}</p>
 				<p><i class="teal empire icon"></i> Mother Religion : {{ $candidate->data->mother->religion}}</p>				
@@ -113,6 +135,8 @@
 			</div>
 
 
+	
+<h4>@{{ candidates|json }}</h4>
 		</section> <!-- Candidate Detail END -->
 
 	

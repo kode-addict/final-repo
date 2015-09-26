@@ -157,4 +157,19 @@ class CandidateController extends Controller
     {
         return \App\LikeCandidate::where('candidate_id',$candidateId)->count();
     }
+
+    public function compare($p1,$p2,ApiRepository $apirepo)
+    {
+
+        $person=$apirepo->getCandidateById($p1);
+        
+        $person1=$apirepo->getCandidateById($p2);
+
+        return view('candidate.compare',compact('person','person1'));
+    }
+
+    protected function getLikeCountForCandidate($candidateId)
+    {
+        return \App\LikeCandidate::where('candidate_id',$candidateId)->count();
+    }
 }

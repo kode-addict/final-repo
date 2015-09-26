@@ -27,6 +27,7 @@ $factory->define(App\Candidate::class, function ($faker) {
         'name' => $faker->name,
         'image_url' => $faker->text,
     ];
+    
 });
 
 $factory->define(App\CandidateReview::class, function ($faker) {
