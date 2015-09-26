@@ -20824,9 +20824,6 @@ $('#upperstep2').hide();
 
 
 
-
-
-
 $(document).ready(function(){
 
 

@@ -50,3 +50,43 @@
 width: 200px !important;
 height: 170px !important;
 }
+
+.main {
+  margin-top: 100px;
+}
+
+.gray-color {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.push-down {
+  margin-bottom: 2.5em;
+}
+.header-text {
+  padding-top: 200px;
+}
+.slogan {
+  background: url('../images/background.jpg') fixed;
+  background-size: cover;
+  min-height: 450px;
+}
+.hot-candidate-card {
+  margin-top: 50px !important;
+}
+.hot-candidate-header {
+  margin-top: 50px !important;
+}
+section.hot-candidate {
+    padding-bottom: 80px !important;
+  }
+.wrapper {
+  margin: 80px 0 80px 0;
+}
+.footer-wide {
+  margin-top: 80px !important;
+  padding: 100px 0 !important;
+  color: white;
+}
+.about-text {
+  padding: 80px 0 !important;
+}
