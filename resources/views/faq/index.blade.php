@@ -30,7 +30,7 @@
 				    	<p>{!! str_limit($faq->answer, 300, '...') !!}</p>
 
 						<div class="ui grid">
-							<div class="left aligned wide column">
+<!-- 							<div class="left aligned wide column">
 							    <div class="gray-color">
 							      <span>
 							        <i class="like icon"></i> 100 Like
@@ -42,7 +42,7 @@
 							        <i class="share icon"></i> 30 Share
 							      </span>
 							    </div>
-							</div>
+							</div> -->
 
 							<!-- <div class="right aligned two wide column">
 								<div class="ui right dropdown item">
@@ -62,6 +62,28 @@
 				  </div>
 			</section>
 		@endforeach
+
+		<div class="ui pagination menu">
+			@if(!empty($data->meta->pagination->links->previous))
+				<a class="item" href="{{ url('faq/').$data->meta->pagination->links->previous }}">
+					Previous
+				</a>
+			@else
+				<a class="disabled item">
+					Previous
+				</a>
+			@endif
+			@if(!empty($data->meta->pagination->links->next))
+				<a class="item" href="{{ url('faq/').$data->meta->pagination->links->next }}">
+					Next
+				</a>
+			@else
+				<a class="disabled item">
+					Next
+				</a>
+			@endif
+		</div>
+
 	@else
 		<div class="ui warning message">
 	      <i class="close icon"></i>

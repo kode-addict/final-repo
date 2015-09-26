@@ -25,7 +25,10 @@ class FaqController extends Controller
         $keyword = $request->input('keyword');
         $data = $keyword
                 ? $this->apiRepo->getFaqByKeyword($keyword)
-                : $this->apiRepo->getFaqList();
+                : $this->apiRepo->getFaqList($request->page ?: 1);
+
+        // dd($data);
+        
         return view('faq.index', compact('data', $data));
     }
 
