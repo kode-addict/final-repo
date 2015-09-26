@@ -84,11 +84,11 @@
         <form action="{{ url('candidate/search') }}" method="GET">
 
             <div class="ui search ">
-                <div class="ui left icon input">
+                <div class="ui left icon large input">
                     <input class="prompt" name="q" type="text" placeholder="Search Candidate">
                     <i class="user icon"></i>
                 </div>
-                <button class="ui green button" type="submit"><i class="search icon"></i>Search</button>
+                <button class="ui green large button" type="submit">Search</button>
             </div>
         </form>
     </div>

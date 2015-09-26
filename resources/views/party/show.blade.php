@@ -11,10 +11,9 @@
 			<img class="ui small bordered rounded image party-img" src="{{ $party->data->party_seal }}">
 			
 			<div class="ui right aligned grid">
-<!-- 				<div class="ui right floated column">
-					<button class="ui button">Watch</button>
-					<button class="ui button">Review</button>									
-				</div> -->
+				<div class="ui right floated column">
+					<br>								
+				</div>
 			</div><br><br>
 			<input v-show="false" v-model="likes" value="{{ $likes }}">
 

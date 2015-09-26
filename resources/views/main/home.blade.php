@@ -58,7 +58,7 @@
           margin-bottom: 2.5em;
         }
         .header-text {
-          padding-top: 200px;
+          padding-top: 170px;
         }
         .nice-text {
           text-shadow: 0em 0em 1em #000; 
@@ -95,7 +95,13 @@
         }
         .about-text {
           padding: 80px 0 !important;
-        }        
+        }
+        .search-everything{
+            min-height: 400px;
+        } 
+        .chosehouse{
+            margin-top: 200px;
+        }       
     </style>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 </head>
@@ -139,23 +145,6 @@
         </div>
     </header> <!-- HEADER END -->            
 
-    <div class="ui main column centered grid">
-        <div style="top: 150px !important; position: relative;">
-            <form action="{{ url('candidate/search') }}" method="GET">
-
-                <div class="ui search ">
-                    <div class="ui left icon input">
-                        <input class="prompt" name="q" type="text" placeholder="Search Candidate">
-                        <i class="user icon"></i>
-                    </div>
-
-                    <button class="ui green button" type="submit"><i class="search icon"></i>Search</button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-
     <section class="slogan">
         <div class="ui center aligned text container header-text nice-text">
             <h1>
@@ -164,6 +153,24 @@
             <p>
                 An Web Application Design to Help Millions of Voters in Myanmar
             </p>
+
+            <div class="ui main column centered grid">
+                <div style="top: 50px !important; position: relative;">
+                    <form action="{{ url('candidate/search') }}" method="GET">
+
+                        <div class="ui search ">
+                            <div class="ui left icon input">
+                                <input class="prompt" name="q" type="text" placeholder="Search Candidate">
+                                <i class="user icon"></i>
+                            </div>
+
+                            <button class="ui green button" type="submit">Search</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
         </div>
     </section> <!-- Slogan END -->
 
@@ -175,109 +182,40 @@
             </h1>
         </div> <!-- Candidate Header END -->
         <div class="ui three column center aligned grid hot-candidate-card container">
-            <div class="ui four link cards">
+            <div class="ui four cards">
+
+                @foreach($data as $d)
+
                 <div class="card">  
                     <div class="image">
-                        <img src="{{ asset('images/avatar.jpg') }}">
+                        <img src="{{ $d->data->photo_url }}">
                     </div>
 
                     <div class="content">
-                        <div class="header">Matt Giampietro</div>
+                        <div class="header">
+                            <a href="candidate/{{ $d->data->id }}">{{ $d->data->name }}</a>
+                        </div>
 
                         <div class="meta">
-                            <a>Friends</a>
+                            <a href="party/{{ $d->data->party->id }}">{{ $d->data->party->party_name }}</a>
                         </div>
 
                         <div class="description">
-                            Matthew is an interior designer living in New York.
+                            <p>{{ $d->data->legislature }}</p>
                         </div>
                     </div>
 
                     <div class="extra content">
 
-                        <span class="right floated">
-                            Joined in 2013
-                        </span>
-
                         <span>
-                            <i class="user icon"></i>
-                            75 Friends
+                            <i class="checkmark icon"></i>
+                            Total Vote : {{ $d->data->likeCount }}
                         </span>
 
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="image">
-                        <img src="{{ asset('images/avatar.jpg') }}">
-                    </div>
-                    <div class="content">
-                        <div class="header">Molly</div>
-                        <div class="meta">
-                            <span class="date">Coworker</span>
-                        </div>
-                        <div class="description">
-                            Molly is a personal assistant living in Paris.
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <span class="right floated">
-                            Joined in 2011
-                        </span>
-                        <span>
-                            <i class="user icon"></i>
-                            35 Friends
-                        </span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="image">
-                        <img src="{{ asset('images/avatar.jpg') }}">
-                    </div>
-                    <div class="content">
-                        <div class="header">Elyse</div>
-                        <div class="meta">
-                            <a>Coworker</a>
-                        </div>
-                        <div class="description">
-                            Elyse is a copywriter working in New York.
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <span class="right floated">
-                            Joined in 2014
-                        </span>
-                        <span>
-                            <i class="user icon"></i>
-                            151 Friends
-                        </span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="image">
-                        <img src="{{ asset('images/avatar.jpg') }}">
-                    </div>
-                    <div class="content">
-                        <div class="header">Molly</div>
-                        <div class="meta">
-                            <span class="date">Coworker</span>
-                        </div>
-                        <div class="description">
-                            Molly is a personal assistant living in Paris.
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <span class="right floated">
-                            Joined in 2011
-                        </span>
-                        <span>
-                            <i class="user icon"></i>
-                            35 Friends
-                        </span>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
@@ -299,7 +237,7 @@
 
         <section class="search-everything">
 
-            <div class="ui center aligned text container">
+            <div class="ui center aligned text container chosehouse">
                 <div class="ui header">Choose Your House</div>
             </div><br><br>
 

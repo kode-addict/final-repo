@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\ApiRepo\ApiRepository;
 use App\Http\Controllers\Controller;
 
 class MainController extends Controller
@@ -14,9 +15,23 @@ class MainController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(ApiRepository $apirepo)
     {
-        return view('main.home');
+        $popularCandidate=\App\LikeCandidate::select('*',\DB::raw('count(candidate_id) as count'))->groupBy('candidate_id')->orderBy('count','desc')->take(4)->get();
+
+        $data;
+
+        foreach ($popularCandidate as $key => $value) {
+            
+            $candidate=$apirepo->getCandidateById($value->candidate_id);
+
+            $candidate->data->likeCount=$value->count;
+
+            $data[]=$candidate;
+
+        }
+
+        return view('main.home', compact('data'));
     }
 
     /**
