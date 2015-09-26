@@ -104,16 +104,27 @@ class ApiRepository
      * @return candidate data
      */
 
-	public function getCandidateByName($name)
+	public function getCandidateByName($name,$page=1)
 	{
 	    $response=$this
 	    			->client
 	    			->request(
-	    					'GET', $this->candidateEndpoint.'search?q='.$name.'&token='.$this->getToken().'&_with=party'
+	    					'GET', $this->candidateEndpoint.'search?q='.$name.'&token='.$this->getToken().'&_with=party&page='.$page
 	    				);
 
 		return $this->getJsonValue($response);					
 	}
+
+	public function getCandidateByNameAjax($name)
+	{
+	    $response=$this
+	    			->client
+	    			->request(
+	    					'GET', $this->candidateEndpoint.'search?q='.$name.'&token='.$this->getToken().'&per_page=5'
+	    				);
+
+		return $this->getJsonValue($response);					
+	}	
 
     /**
      * Get the pary List from api.

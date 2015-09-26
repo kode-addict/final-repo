@@ -12,6 +12,8 @@
 */
  Auth::loginUsingId(1);
 
+$router->get('candidate/search', 'CandidateController@candidateSearchName');
+
 Route::resource('/','MainController');
 
 $router->get('test','CandidateController@index');
@@ -40,7 +42,8 @@ Route::get('user/favorites','UserController@getFavoriteList');
 
 Route::resource('party.candidate', 'PartyCandidateController');
 
-$router->get('candidate/search/{name}', 'CandidateController@candidateSearch');
+$router->get('candidate/searchajax/{name}', 'CandidateController@candidateSearch');
+
 
 $router->get('candidate/compare/{p1}/{p2}', 'CandidateController@compare');
 

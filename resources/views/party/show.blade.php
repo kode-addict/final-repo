@@ -23,9 +23,24 @@
 			<div class="ui text container">
 				<h3>{{ $party->data->party_name_english }} ( {{$party->data->party_name}} )</h3>
 				<p><i class="teal student icon"></i> Members : {{$party->data->member_count }}</p>
-				<p><i class="teal suitcase icon"></i> Leadership : {{$party->data->leadership[0] }}</p>
+				<p><i class="teal suitcase icon"></i> Leadership :
+				@foreach($party->data->leadership as $leadership)
+				  {{$leadership }},
+				@endforeach
+				</p>
+				<p><i class="teal suitcase icon"></i> Chairman :
+				@foreach($party->data->chairman as $chairman)
+				  {{$chairman }},
+				@endforeach
+				</p>				
 				<p><i class="teal map pin icon"></i> Party Address : {{ $party->data->headquarters}}</p>				
 				<p><i class="teal map icon"></i> Region : {{ $party->data->region}}</p>	
+				<p><i class="teal phone icon"></i> Contact :
+				@foreach($party->data->contact as $contact)
+					{{ $contact }}
+				@endforeach
+				</p>
+				<p><i class="teal map icon"></i> Approve Number : {{ $party->data->approved_party_number}}</p>						
 				<p><i class="teal map icon"></i> Policy : <a href="{{ $party->data->policy}}"> Download Policy</a></p>			
 				<a href='{{ route('candidate.index') ."?party=".$party->data->id }}'> <i class="teal users icon"></i>  See members </a>
 				<br><br>
@@ -40,7 +55,7 @@
 						<input class="hidden" v-model="favorited" value="true">
 						
 						<a v-on="click : favorite($event,partyId)"><i class="icon heart large up favoritebtn" v-class="red:favorited"></i></a>
-					
+						<span v-show="favorited">favorited</span>
 					@else
 
 						<a v-on="click : favorite($event,partyId)"><i class="icon heart large up favoritebtn" v-class="red:favorited"></i></a>
@@ -49,22 +64,24 @@
 
 				@endIf
 
-				<span>@{{ likes }} votes</span>
+				
 
 				@if(Auth::check()) 
 
 					@if(auth()->user()->checkLikeParty($party->data->id))
 
 						<input class="hidden" v-model="liked" value="true">
-						<a v-on="click : like($event,partyId)"> <i class="icon thumbs likebtn large up" v-class="blue:liked"></i></a>
+						<a v-on="click : like($event,partyId)"> <i class="icon checkmark likebtn large up" v-class="green:liked"></i></a>
 					@else
 
-						<a v-on="click : like($event,partyId)"> <i class="icon thumbs likebtn large up" v-class="blue:liked"></i></a>
+						<a v-on="click : like($event,partyId)"> <i class="icon checkmark likebtn large up" v-class="green:liked"></i></a>
 					
 					@endIf
 
 
 				@endIf
+
+				<span>@{{ likes }} votes</span>
 
 			</div>
 

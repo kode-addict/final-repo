@@ -234,9 +234,9 @@
 				</div><!-- end segment-->
 			</div><!-- upper house region -->
 
-			<div class="ui raised segment text container">
+<!-- 			<div class="ui raised segment text container">
 				{{ Inspiring::quote() }}
-			</div>
+			</div> -->
 	</div>
 </div>
 

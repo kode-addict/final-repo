@@ -68,7 +68,7 @@
 
 		<div class="column hidden" id="template">
 
-		<div class="ui one column grid infiniteParty">
+			<br>
 
 			<h2 class="ui header"><a href=""> </a></h2>
 

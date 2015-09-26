@@ -31,7 +31,7 @@ new Vue ({
 
 		compare:[],
 
-	},
+	},  
 	
 	ready: function() {
 
@@ -39,7 +39,7 @@ new Vue ({
 
 			console.log(this.tspcode+'hihi');
 
-			if(this.amcode==null){
+			if(!this.amcode==null){
 				
 				data={ constituency_am_pcode:this.amcode ,legislature:this.legislature,constituency_number:this.cnumber };
 			}
@@ -54,21 +54,6 @@ new Vue ({
 			}
 
 			var that=this;
-	},
-	ready: function() {
-
-			var place;
-
-			if(this.amcode==''){
-				
-				data={ constituency_ts_pcode:this.tspcode , legislature:this.legislature,constituency_number :this.cnumber};
-			}
-			else{
-
-				data={ constituency_am_pcode:this.amcode ,legislature:this.legislature,constituency_number:this.cnumber };
-			}
-
-			var that=this;
 
 		    this.$http.get('../candidate',data,function (data, status, request) {
 
@@ -78,18 +63,6 @@ new Vue ({
 
 						that.compare.push(value);
 					}
-
-				});
-
-
-		    }).error(function (data, status, request) {
-		          
-		          // handle error
-		    })		
-
-	},
-
-					that.compare.push(value);
 
 				});
 

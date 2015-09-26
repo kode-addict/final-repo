@@ -19,7 +19,8 @@ elixir(function(mix) {
     mix.styles([
     			
     			'../semantic/dist/semantic.css',
-    			'style.css'
+    			'style.css',
+                '../toast/toastr.css'
 
     		],'public/css/app.css');
 
@@ -33,7 +34,8 @@ elixir(function(mix) {
     			'custom.js',
                 'candidate.js',
                 'party.js',
-                'compare.js'
+                'compare.js',
+                '../toast/toastr.min.js'
 
     		],'public/js/app.js');
 

@@ -1,19 +1,10 @@
+
 <html>
 
  <meta id="token" name="token" value="{{ csrf_token() }}">
     <head>
         <title>Laravel</title>
-        
-        @if(Request::is('candidate/*'))
-    
-        <meta property="og:url" content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="When Great Minds Don’t Think Alike" />
-        <meta property="og:description"content="How much does culture influence creative thinking?" />        
-        
-        <meta property="og:image" content="{{ $candidate->data->photo_url }}" />
-        
-        @endIf
+
         
         <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
 
@@ -34,6 +25,7 @@
                 font-weight: 500;
                 font-family: 'Lato';
             }
+
 
 
             .title {
@@ -77,12 +69,57 @@
             </div>          
         </header> <!-- HEADER END -->
         <br><br><br><br>
+        
+        <div class="ui grid column centered">
+        <form action="{{ url('candidate/search') }}" method="GET">
+
+        <div class="ui search ">
+          <div class="ui left icon input">
+            <input class="prompt" name="q" type="text" placeholder="Search GitHub">
+            <i class="github icon"></i>
+          </div>
+        <button class="ui green button" type="submit">Search</button>
+
+        </div>
+
+        </form>
+
+        </div>
+
+
         <div class="ui container">
             <div class="content">
                 @yield('content')
             </div>
         </div>
         
+
+
+        <br><br>
+
+        <script type="text/javascript">
+           
+        $(document).ready(function(){
+
+          $('.ui.search')
+            .search({
+              apiSettings: {
+                url: "{{ url('candidate/searchajax') }}"+'/{query}'
+              },
+              fields: {
+                results : 'data',
+                title   : 'name',
+                image   : 'photo_url',
+                url     : 'url'
+
+              },
+              minCharacters : 3
+            });
+
+
+           });               
+          
+        </script>
     </body>
 
 </html>

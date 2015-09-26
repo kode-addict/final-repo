@@ -139,23 +139,66 @@ class CandidateController extends Controller
     {
         //
     }
-    public function candidateSearch(ApiRepository $apirepo,$name)
+    public function candidateSearch(ApiRepository $apirepo,Request $request,$name)
     {
-        $candidate=$apirepo->getCandidateByName($name);
 
-        dd($candidate);   
+        if ($request->ajax()) {
+
+            $candidate=$apirepo->getCandidateByNameAjax($name);
+
+            $meta=$candidate->meta;
+
+            $data=[];
+
+            foreach ($candidate->data as $key => $value) {
+                
+                $value->url=url('canidate').'/'.$value->id;
+
+                $data[]=$value;
+            }
+
+            $result['data']=$data;
+
+            $result['meta']=$meta;
+
+            return json_encode($result);
+            
+        }
+
+
     }
+
+    public function candidateSearchName(ApiRepository $apirepo,Request $request)
+    {
+
+        $name=$request->input('q');
+
+        if($request->has('page')){
+            
+            $candidateList=$apirepo->getCandidateByName($name,$request->input('page'));
+
+        }
+        else{
+
+            $candidateList=$apirepo->getCandidateByName($name);
+        }
+
+        if($request->ajax()){
+
+            return json_encode($candidateList);
+        }
+
+        
+
+        return view('candidate.search',compact('candidateList'));
+
+    }   
 
     public function candidateListSearch(ApiRepository $apirepo,Request $request)
     {
         $candidateList=$apirepo->getCandidateListBySearch($request);
 
         dd($candidateList);
-    }
-
-    protected function getLikeCountForCandidate($candidateId)
-    {
-        return \App\LikeCandidate::where('candidate_id',$candidateId)->count();
     }
 
     public function compare($p1,$p2,ApiRepository $apirepo)
@@ -172,4 +215,5 @@ class CandidateController extends Controller
     {
         return \App\LikeCandidate::where('candidate_id',$candidateId)->count();
     }
+
 }
