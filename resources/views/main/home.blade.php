@@ -5,16 +5,8 @@
 
     <meta id="token" name="token" value="{{ csrf_token() }}">
 
-    @if(Request::is('candidate/*'))
-
-    <meta property="og:url" content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
-    <meta property="11111og:type" content="article" />
-    <meta property="og:title" content="When Great Minds Don’t Think Alike" />
-    <meta property="og:description"content="How much does culture influence creative thinking?" />
-
-    <meta property="og:image" content="{{ $candidate->data->photo_url }}" />
-
-    @endIf
+  
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
     <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
