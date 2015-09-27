@@ -20476,7 +20476,7 @@ $('#step3').hide();
 				
 				$.each(datas.data,function(key,value){		
 					
-					return buildOption(value.properties.DT,value.properties.TS_PCODE,select);	
+					return buildOption(value.properties.Township,value.properties.ts_pcode_1,select);	
 
 				});	 
 				   		
@@ -20659,7 +20659,7 @@ $('#statestep3').hide();
 				
 				$.each(datas.data,function(key,value){		
 					
-					return buildOption(value.properties.TS,value.properties.TS_PCODE,select);	
+						return buildOption(value.properties.Township,value.properties.ts_pcode_1,select);	
 
 				});	 
 				   		
@@ -20859,7 +20859,6 @@ $('#upperstep2').hide();
 
 
 });
-
 
 
 
