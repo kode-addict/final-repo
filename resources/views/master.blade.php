@@ -2,7 +2,7 @@
 <html>
 <meta id="token" name="token" value="{{ csrf_token() }}">
 <head>
-    <title>Mae Pay Soh Web Application</title>
+    <title>Mae Pay Soh</title>
 
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
 

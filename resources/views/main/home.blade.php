@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mae Pay Soh Web Application</title>
+    <title>Mae Pay Soh</title>
 
     <meta id="token" name="token" value="{{ csrf_token() }}">
 
@@ -184,8 +184,8 @@
     <section class="ui vertical segment hot-candidate">
         <div class="hot-candidate-header">
             <h1 class="ui center aligned header">
-                Hot Candidate
-                <div class="sub header">This is Some Hot Candidate</div>
+                လူကြိုက်များသောကိုယ်စားလှယ်လောင်းများ
+                <!-- <div class="sub header">This is Some Hot Candidate</div> -->
             </h1>
         </div> <!-- Candidate Header END -->
         <div class="ui three column center aligned grid hot-candidate-card container">
@@ -230,13 +230,10 @@
 
     <div class="ui center aligned vertical about-text segment">
         <div class="ui text container">
-            <div class="ui header">Mae Pay Soh</div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="ui header"> မဲပေးစို့ Web Application</div>
+            <p>
+                မြန်မာနိုင်ငံ၏ ၂၀၁၅ ရွေးကောက်ပွဲတွင် ပြည်တွင်းရှိ သန်းနှင့်ချီသော မဲပေးခွင့်ရှိသည့် ပြည်သူများအတွက် မဲပေးရာတွင် သိသင့်သိထိုက်သော အကြောင်းအရာများနှင့် သက်ဆိုင်ရာ မဲဆန္ဒနယ်များရှိ ရွေးကောက်ခံ ကိုယ်စားလှယ်များ၏ အချက်အလက်များကို အများပြည်သူများ ၀င်ရောက်ကြည့်ရှု သိရှိနိုင်စေရန် ရည်ရွယ်ထားသော Web Application
+            </p>
             </div>
         </div>
 
@@ -245,17 +242,17 @@
         <section class="search-everything">
 
             <div class="ui center aligned text container chosehouse">
-                <div class="ui header">Choose Your House</div>
+                <div class="ui header">ကျေးဇူးပြု၍ လွှတ်တော် ရွေးချယ်ပေးရန်</div>
             </div><br><br>
 
             <div class="ui one column center aligned container grid">
 
                 <div class="column">
-                    <button class="ui huge green button" id="lower">The Lower House</button>
+                    <button class="ui huge green button" id="lower">ပြည်သူ့လွှတ်တော်</button>
 
-                    <button class="ui huge violet button" id="state">The State Region</button>
+                    <button class="ui huge violet button" id="state">တိုင်း နှင့် ပြည်နယ် လွှတ်တော်</button>
 
-                    <button class="ui huge red button" id="upper">The Upper House</button>
+                    <button class="ui huge red button" id="upper">အမျိုးသား လွှတ်တော်</button>
                 </div>
             </div>
 
@@ -267,9 +264,9 @@
 
                         <div id="lowerhouse">
                             <div class="ui three column grid" id="indicator">
-                                <div class="column"><h5 id="step1header" class="ui header">1.Chose State  <i class="hidden checkmark green icon"></i> </h5></div>   
-                                <div class="column"><h5 id="step2header" class="ui header grey">2.Chose District <i class="hidden checkmark green icon"></i> </h5></div>    
-                                <div class="column"><h5 id="step3header" class="ui header grey">3.Chose Township <i class="hidden checkmark green icon"></i> </h5></div>                
+                                <div class="column"><h5 id="step1header" class="ui header">1. ပြည်နယ်/တိုင်းရွေးချယ်ပါရန်  <i class="hidden checkmark green icon"></i> </h5></div>   
+                                <div class="column"><h5 id="step2header" class="ui header grey">2. ခရိုင်ရွေးချယ်ပါရန် <i class="hidden checkmark green icon"></i> </h5></div>    
+                                <div class="column"><h5 id="step3header" class="ui header grey">3. မြို့နယ်ရွေးချယ်ပါရန် <i class="hidden checkmark green icon"></i> </h5></div>                
                             </div>      
                         </div>
 
@@ -349,9 +346,9 @@
                     <div class="ten wide computer column sixteen wide mobile" id="the-state">
                         <div id="state_region">
                             <div class="ui three column grid" id="indicator">
-                                <div class="column"><h5 id="statestep1header" class="ui header">1.Chose State  <i class="hidden checkmark green icon"></i> </h5></div>  
-                                <div class="column"><h5 id="statestep2header" class="ui header grey">2.Chose District <i class="hidden checkmark green icon"></i> </h5></div>   
-                                <div class="column"><h5 id="statestep3header" class="ui header grey">3.Chose Township <i class="hidden checkmark green icon"></i> </h5></div>               
+                                <div class="column"><h5 id="statestep1header" class="ui header">1. ပြည်နယ်/တိုင်းရွေးချယ်ပါရန်  <i class="hidden checkmark green icon"></i> </h5></div>  
+                                <div class="column"><h5 id="statestep2header" class="ui header grey">2. ခရိုင်ရွေးချယ်ပါရန် <i class="hidden checkmark green icon"></i> </h5></div>   
+                                <div class="column"><h5 id="statestep3header" class="ui header grey">3. မြို့နယ်ရွေးချယ်ပါရန် <i class="hidden checkmark green icon"></i> </h5></div>               
                             </div>
 
                         </div>
@@ -496,9 +493,9 @@
             </div>
 
             <div class="ui center aligned container grid">
-                <button class="ui large green button" id="back-upper">Back</button>
-                <button class="ui large green button" id="back-state">Back</button>
-                <button class="ui large green button" id="back-lower">Back</button>         
+                <button class="ui large green button" id="back-upper">မူလနေရာမှပြန်လည်ရွေးချယ်ရန်</button>
+                <button class="ui large green button" id="back-state">မူလနေရာမှပြန်လည်ရွေးချယ်ရန်</button>
+                <button class="ui large green button" id="back-lower">မူလနေရာမှပြန်လည်ရွေးချယ်ရန်</button>         
             </div>
 
         </section> <!-- Search Everything END -->

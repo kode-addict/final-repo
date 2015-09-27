@@ -259,7 +259,7 @@ $('#statestep3').hide();
 	$('#statestep2 .done').click(function() {
 
 
-		var districtcode=$('#step2 select').val();	
+		var districtcode=$('#statestep2 select').val();	
 
 		if(districtcode==''){
 			return false;
