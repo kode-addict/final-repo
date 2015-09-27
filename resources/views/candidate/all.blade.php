@@ -96,7 +96,7 @@
 		
 		<div class="ui sticky">
 			
-			<h3>{{ $candidateList->data[0]->constituency->name}} {{$candidateList->data[0]->legislature}} ko sar lal laung myar</h3>
+			<h3>{{ $candidateList->data[0]->constituency->name}} {{$candidateList->data[0]->legislature}} ကိုယ်စားလှယ်လောင်းများ</h3>
 			<h3>Rank Score</h3>
 
 			<div class="ui middle aligned selection list"  v-repeat="candidate in topLocalCandidates | orderBy 'like' -1 " >
