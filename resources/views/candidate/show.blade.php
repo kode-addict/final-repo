@@ -131,6 +131,7 @@
 	<div class="fb-comments" data-href="{{ Request::url() }}" data-numposts="5" width="100%"></div>
 </div>
 
-	
 	<br><br>
+
+}
 @stop

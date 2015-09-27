@@ -57,8 +57,17 @@
     <a href="{{ url('candidate?per_page=15') }}" class="item">Candidate</a>
     <a href="{{ url('faq') }}" class="item">Voter Education</a>
     <a href="{{ url('howto') }}" class="item">Important Facts About Voting</a>
+
+
+    @if(!Auth::check())
+
     <a href="{{ url('register') }}" class="item">Register</a>
-    <a href="{{ url('login') }}" class="item">Login</a>            
+    <a href="{{ url('login') }}" class="item">Login</a>   
+        @else 
+             <a href="{{ url('user/favorites') }}" class="item">Favourite List</a>  
+
+     <a href="{{ url('logout') }}" class="item">Logout</a>     
+    @endIf    
 </div> <!-- SideBar END -->
 
 <div class="dimmed pusher">
@@ -67,7 +76,7 @@
             <div class="ui container">
                 <div class="header item">
                     <!-- <img class="logo" src="assets/images/logo.png"> -->
-                    <a href="{{ url('/') }}">Mae Pay Soh</a>
+                    <a href="{{ url('/') }}">Mae Pay Soh </a>
                 </div>
 
                 <div class="right menu">

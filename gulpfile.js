@@ -35,8 +35,8 @@ elixir(function(mix) {
                 'candidate.js',
                 'party.js',
                 'compare.js',
-                '../toast/toastr.min.js'
-
+                '../toast/toastr.min.js',
+                'hideShowPassword.js'
     		],'public/js/app.js');
 
 
